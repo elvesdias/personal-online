@@ -15,6 +15,10 @@ Submeter o formulário.
 
 **Resultado Esperado:** A conta deve ser criada e o administrador redirecionado para a página principal.
 
+**Evidência do Teste**
+
+https://github.com/user-attachments/assets/bae8cede-9169-4d0a-bdf4-793b502cb386
+
 
 **RF-02 - Cadastrar contas de alunos**
 
