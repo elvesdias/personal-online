@@ -15,6 +15,10 @@ Submeter o formulário.
 
 **Resultado Esperado:** A conta deve ser criada e o administrador redirecionado para a página principal.
 
+**Evidência do Teste**
+
+https://github.com/user-attachments/assets/bae8cede-9169-4d0a-bdf4-793b502cb386
+
 
 **RF-02 - Cadastrar contas de alunos**
 
@@ -187,5 +191,12 @@ Este plano de testes cobre os requisitos funcionais propostos, com cenários que
 
  
 # Evidências de Testes de Software
+ **Cadastro Login testes**
+- [Vídeo Teste de Cadastro e Login](https://github.com/user-attachments/assets/42f501f0-37cf-479e-8856-d47e3a2f57cc).
+- [Campos vazios](https://github.com/user-attachments/assets/0a2efb91-4520-405a-b772-0d037def5c25)
+- [Usuário não encontrado](https://github.com/user-attachments/assets/5729fe8b-d8b8-419b-b4bc-71d9e72f6148)
+- [Senha ou usuário incorreto](https://github.com/user-attachments/assets/ce8a9d34-2dc8-4244-b42b-80fd4a9678a5)
+  # LOG ERROS/SUCESSO
+- [Erros ccadastrais](https://github.com/user-attachments/assets/5c20c4e8-f8d4-4951-86cf-69fd04797461)
 
-Apresente imagens e/ou vídeos que comprovam que um determinado teste foi executado, e o resultado esperado foi obtido. Normalmente são screenshots de telas, ou vídeos do software em funcionamento.
+  
