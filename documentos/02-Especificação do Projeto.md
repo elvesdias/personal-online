@@ -18,7 +18,7 @@ Segue abaixo a tabela com as tecnologias utilizadas no desenvolvimento da aplica
 
 ## Project Model Canvas
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/project-model-canvas.png" alt="canvas">
+![Project Model Canvas - Personal Online](https://github.com/user-attachments/assets/bf68a1e9-3c0a-48a4-9677-8d0150438178)
 
 ## Requisitos
 
