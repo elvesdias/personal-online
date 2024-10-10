@@ -18,7 +18,7 @@ Segue abaixo a tabela com as tecnologias utilizadas no desenvolvimento da aplica
 
 ## Project Model Canvas
 
-<img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/project-model-canvas.png" alt="canvas">
+![Project Model Canvas - Personal Online](https://github.com/user-attachments/assets/bf68a1e9-3c0a-48a4-9677-8d0150438178)
 
 ## Requisitos
 
@@ -77,5 +77,6 @@ As questões que limitam a execução desse projeto e que se configuram como obr
 ## Projeto da Base de Dados
 O projeto da base de dados corresponde à representação das entidades e relacionamentos identificadas no Modelo ER, no formato de tabelas, com colunas e chaves primárias/estrangeiras necessárias para representar corretamente as restrições de integridade.
 
-<img width="1348" alt="Captura de Tela 2024-08-31 às 18 36 17" src="https://github.com/user-attachments/assets/ccaba8dc-d59f-45b1-adea-5b0e40b24538">
+<img width="750" alt="Captura de Tela 2024-09-29 às 16 28 30" src="https://github.com/user-attachments/assets/a3918d97-50ca-4d59-a662-cd0da64d41cf">
+
 
