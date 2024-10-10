@@ -19,7 +19,7 @@ export function Home() {
     }
 useEffect(()=> { 
     async function getExercise() {
-        const response = await axios.get("http://192.168.0.101:3333/exercises")
+        const response = await axios.get("http://192.168.1.4:3333/exercises")
         setExercises(response.data)
         // console.log(response.data)
     }
