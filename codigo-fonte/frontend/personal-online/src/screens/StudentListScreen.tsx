@@ -3,17 +3,8 @@ import { VStack, HStack, Input, IconButton, Icon, FlatList, Box, Text, Button, A
 import { FontAwesome5, Feather } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
-export function StudentListScreen() {
-  const navigation = useNavigation();
-  const [students, setStudents] = useState([
-    { id: '1', name: 'ALUNO 1' },
-    { id: '2', name: 'ALUNO 2' },
-    { id: '3', name: 'ALUNO 3' },
-    { id: '4', name: 'ALUNO 4' },
-    { id: '5', name: 'ALUNO 5' },
-    { id: '6', name: 'ALUNO 6' },
-  ]);
-  const [search, setSearch] = useState('');
+export function StudentListScreen()
+  const [exercises, students] = useState(['Aluno 1', 'Aluno 2', 'Aluno 3', 'Aluno 4']);
 
   // Função para abrir detalhes do aluno
   const handleStudentDetails = (student) => {
@@ -95,4 +86,3 @@ export function StudentListScreen() {
       </HStack>
     </VStack>
   );
-}
