@@ -43,9 +43,9 @@ export function Exercise() {
 
     return (
         <VStack flex={1}>
-            <VStack px={8} bg="gray.600" pt={12}>
+            <VStack px={8} bg="blueGray.800" pt={12}>
                 <TouchableOpacity onPress={handleGoBack}>
-                    <Icon as={Feather} name="arrow-left" color="yellow.500" size={6} />
+                    <Icon as={Feather} name="arrow-left" color="gray.200" size={6} />
                 </TouchableOpacity>
 
                 <HStack justifyContent="space-between" mt={4} mb={8} alignItems="center">
@@ -56,7 +56,7 @@ export function Exercise() {
                     <HStack alignItems="center">
                         <BodySvg />
                         <Text color="gray.200" ml={1} textTransform="capitalize">
-                           Costas
+                           TREINO A
                         </Text>
                     </HStack>
                 </HStack>
@@ -74,17 +74,17 @@ export function Exercise() {
                         rounded="lg"
                     />
 
-                    <Box bg="gray.600" rounded="md" pb={4} px={4}>
+                    <Box bg="blueGray.800" rounded="md" pb={4} px={4}>
                         <HStack alignItems="center" justifyContent="space-around" mb={6} mt={5}>
                             <Text color="gray.200" ml="2" fontSize="25">
-                                {exercise.series} Séries
+                                {exercise.series} 4 Séries
                             </Text>
                         </HStack>
 
                         <HStack>
                             <RepetitionsSvg />
                             <Text color="gray.200" ml="2" fontSize="25" marginLeft="10">
-                                {exercise.repetitions} Repetições
+                                {exercise.repetitions} 10 Repetições
                             </Text>
                         </HStack>
 

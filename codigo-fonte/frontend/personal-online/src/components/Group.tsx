@@ -11,7 +11,7 @@ export function Group({ name, isActive, ...rest } : Props) {
             mr={3}
             w={24}
             h={10}
-            bg="gray.600"
+            bg="blueGray.800"
             rounded="md"
             justifyContent="center"
             alignItems="center"

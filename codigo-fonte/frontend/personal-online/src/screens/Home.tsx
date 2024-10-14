@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
+import { HStack, VStack, FlatList, Heading, Button, Text, useNativeBase } from 'native-base';
 import axios from 'axios';
 import { HomeHeader } from '@components/HomeHeader';
 import { Group } from '@components/Group'
@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 
 export function Home() {
-    const [groups, setGroups] = useState(['costas', 'bíceps', 'trícpes', 'ombro']);
-    const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Levantamento Terra']);
-    const [groupSelected, setGroupSelected] = useState('costa'); 
+    const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
+    const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
+    const [groupSelected, setGroupSelected] = useState('TREINO A'); 
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
@@ -19,7 +19,7 @@ export function Home() {
     }
 useEffect(()=> { 
     async function getExercise() {
-        const response = await axios.get("http://192.168.1.4:3333/exercises")
+        const response = await axios.get("http://192.168.15.4:3333/exercises")
         setExercises(response.data)
         // console.log(response.data)
     }
@@ -60,8 +60,8 @@ useEffect(()=> {
 
                 <FlatList
                     data={exercises}
-                    // keyExtractor={item => item}
-                    renderItem={({ item}) => (
+                    keyExtractor={item => item}
+                    renderItem={({ item }) => (
                         <ExerciseCard 
                         data = {item}
                             onPress={handleOpenExerciseDetails}
@@ -70,6 +70,13 @@ useEffect(()=> {
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
+    <Button
+    h={20}
+    mb={15}
+    title="Marcar como realizado"
+    variant="outline"
+/>
+
             </VStack>
         </VStack>
     );

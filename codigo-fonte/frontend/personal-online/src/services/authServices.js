@@ -15,7 +15,7 @@ import axios from 'axios';
 
 
 export function userRegister(name, email, password, confirmPassword) {
-    return axios.post("http://192.168.1.34:3333/users/register", {
+    return axios.post("http://192.168.15.34:3333/users/register", {
         name: name,
         email: email,
         password: password,
@@ -24,7 +24,7 @@ export function userRegister(name, email, password, confirmPassword) {
 }
 
 export async function userlogin(email, password) {
-    return await axios.post("http://192.168.1.34:3333/users/login", {
+    return await axios.post("http://192.168.15.34:3333/users/login", {
         email: email,
         password: password,
     })
