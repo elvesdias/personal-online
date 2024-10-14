@@ -29,19 +29,19 @@ export function Profile() {
               w={PHOTO_SIZE}
               h={PHOTO_SIZE}
               rounded="full"
-              startColor="gray.500"
-              endColor="gray.400"
+              startColor="blueGray.500"
+              endColor="blueGray.400"
             />
           ) : (
         <UserPhoto
-              source={{ uri: "https://github.com/rafabelisario.png" }}
+              source={{ uri: 'https://github.com/elvesdias.png' }}
               alt="Foto do usuário"
               size={PHOTO_SIZE}
             />
           )}
         <TouchableOpacity>
         <Text
-              color="blue.500"
+              color="white"
               fontWeight="bold"
               fontSize="md"
               mt={3}
@@ -51,13 +51,15 @@ export function Profile() {
     </Text>
     </TouchableOpacity>
  
-          <Input bg="gray.600" placeholder="Nome" />
+          <Input bg="gray.600" placeholder="Elves Dias" />
  
-          <Input bg="gray.600" placeholder="E-mail" isDisabled />
+          <Input bg="gray.600" placeholder="elvesdias@teste.com" isDisabled />
+
+          <Input bg="gray.600" placeholder="(31) 99999-9999" isDisabled />
     </Center>
  
         <VStack px={10} mt={12} mb={9}>
-        <Heading color="gray.200" fontSize="md" fontFamily="heading" mb={2}>
+        <Heading color="gray.200" fontSize="md" fontFamily="heading" mb={2} >
             Alterar senha
         </Heading>
  

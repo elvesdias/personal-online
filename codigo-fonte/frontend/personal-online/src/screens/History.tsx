@@ -8,17 +8,17 @@ export function History() {
   const [exercises, setExercises] = useState([
     {
       title: "23.09.2024",
-      data: ["Puxada Frontal", "Remada Unilateral"],
+      data: ["TREINO A"],
     },
     {
-      title: "23.09.2024",
-      data: ["Puxada Frontal", "Remada Unilateral"],
+      title: "24.09.2024",
+      data: ["TREINO B"],
     },
   ]);
 
   return (
     <VStack flex={1}>
-      <ScreenHeader title="Histórico de Exercícios" />
+      <ScreenHeader title="Histórico de Treinos" />
 
       <SectionList
         sections={exercises}
@@ -41,7 +41,7 @@ export function History() {
         }
         ListEmptyComponent={() => (
           <Text color="gray.100" textAlign="center">
-            Não há exercícios registrados ainda. {"\n"}
+            Não há treinos registrados ainda. {"\n"}
             Vamos treinar hoje?
           </Text>
         )}

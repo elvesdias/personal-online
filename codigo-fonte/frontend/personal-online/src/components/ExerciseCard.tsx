@@ -13,7 +13,7 @@ export function ExerciseCard(data,{ ...rest }: Props) {
     return (
         <TouchableOpacity onPress={() =>  navigation.navigate('exercise', {data:data})}>
 
-            <HStack bg="gray.800" alignItems="center" p={2} pr={4} rounded="md" mb={3} >
+            <HStack bg="blueGray.800" alignItems="center" p={2} pr={4} rounded="md" mb={3} >
                 <Image 
                     source={{ uri : 'https://pratiquefitness.com.br/blog/wp-content/uploads/2023/07/Exercicio-puxada-beneficios-variacoes-e-como-fazer-2.jpg' }}
                     alt="Imagem do Exercício"
@@ -30,7 +30,7 @@ export function ExerciseCard(data,{ ...rest }: Props) {
                     </Heading>
 
                     <Text fontSize="sm" color="gray.200" mt={1} numberOfLines={2} >
-                        3 séries x 12 repetições
+                        4 séries x 10 repetições
                     </Text>
                 </VStack>
 
