@@ -8,8 +8,6 @@ import { THEME } from './src/theme';
 import { Loading } from './src/components/loading';
 
 import { AuthProvider } from 'src/context/authContext';
-import {ClientRegistration} from '@screens/ClientRegistration'
-import {Profile} from '@screens/Profile'
 
 export default function App() {
     const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold })
@@ -22,7 +20,7 @@ export default function App() {
                     backgroundColor="transparent"
                     translucent
                 />
-                {fontsLoaded ? <Profile /> : <Loading />}
+                {fontsLoaded ? <Routes /> : <Loading />}
             </NativeBaseProvider>
         </AuthProvider>
     );
