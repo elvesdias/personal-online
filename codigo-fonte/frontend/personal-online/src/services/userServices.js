@@ -21,4 +21,3 @@ export async function userhistory(user_id, exercise_id) {
 export function getUserById(id){
     return axios.get(`http://10.0.0.168:3333/users/${id}`)
 }
-

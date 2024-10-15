@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import { HStack, VStack, FlatList, Heading, Button, Text, useNativeBase } from 'native-base';
+import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
 import axios from 'axios';
 import { HomeHeader } from '@components/HomeHeader';
 import { Group } from '@components/Group'
 import { ExerciseCard } from '@components/ExerciseCard';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
+import { Button } from "@components/Button";
 
 export function Home() {
     const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
@@ -19,7 +20,7 @@ export function Home() {
     }
 useEffect(()=> { 
     async function getExercise() {
-        const response = await axios.get("http://192.168.15.4:3333/exercises")
+        const response = await axios.get("http://192.168.1.4:3333/exercises")
         setExercises(response.data)
         // console.log(response.data)
     }
@@ -70,12 +71,7 @@ useEffect(()=> {
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-    <Button
-    h={20}
-    mb={15}
-    title="Marcar como realizado"
-    variant="outline"
-/>
+    <Button title="Marcar como realizado" mt={4} />
 
             </VStack>
         </VStack>
