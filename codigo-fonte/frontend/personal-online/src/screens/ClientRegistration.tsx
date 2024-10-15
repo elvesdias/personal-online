@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
     .min(6, 'A confirmação da senha deve ter pelo menos 6 caracteres'),
 });
 
-export function Profile() {
+export function ClientRegistration() {
   const [photoIsLoading, setPhotoIsLoading] = useState(false);
 
   return (
@@ -45,7 +45,7 @@ export function Profile() {
     >
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
         <VStack flex={1} bg="#121214">
-          <ScreenHeader title="Perfil" />
+          <ScreenHeader title="Cadastrar Aluno" />
           <ScrollView>
             <Center mt={6} px={10}>
               {photoIsLoading ? (
@@ -71,7 +71,7 @@ export function Profile() {
                   mt={3}
                   mb={8}
                 >
-                  Alterar Foto
+                  Adicionar Foto
                 </Text>
               </TouchableOpacity>
 
@@ -145,7 +145,7 @@ export function Profile() {
               />
               {errors.confirmeNovaSenha && touched.confirmeNovaSenha && <Text color="red.500">{errors.confirmeNovaSenha}</Text>}
 
-              <Button title="Atualizar" mt={4} onPress={() => handleSubmit()} />
+              <Button title="Cadastrar" mt={4} onPress={() => handleSubmit()} />
             </VStack>
           </ScrollView>
         </VStack>
