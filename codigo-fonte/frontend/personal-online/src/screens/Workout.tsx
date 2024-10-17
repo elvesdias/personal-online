@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList } from "native-base";
+import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList, Center } from "native-base";
 import { Feather } from "@expo/vector-icons";
 
 import { ScreenHeader } from "@components/ScreenHeader";
@@ -22,28 +22,28 @@ export function Workout() {
     <VStack flex={1} bg="#121214">
       <ScreenHeader title="TREINO A" />
       
-      <HStack px={4} mt={4} mb={4} alignItems="center">
+      <HStack p={4} pt={6} alignItems="center">
         <Input
           flex={1}
-          bg="gray.700"
+          bg="#202024"
           placeholder="Pesquisar Exercício"
-          placeholderTextColor="gray.400"
+          placeholderTextColor="gray.100"
           onChangeText={setSearch}
           value={search}
           _focus={{ borderColor: "gray.500", bg: "gray.600" }}
         />
         <TouchableOpacity>
-          <Icon as={Feather} name="search" size="md" color="gray.400" ml={2} />
+          <Icon as={Feather} name="search" size="md" color="gray.100" ml={2} />
         </TouchableOpacity>
       </HStack>
 
-      <ScrollView px={4}>
+      <ScrollView pt={4} p={4}>
         <FlatList
           data={exercises}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <HStack
-              bg="gray.700"
+              bg="#202024"
               mb={3}
               p={3}
               rounded="md"
@@ -54,17 +54,18 @@ export function Workout() {
                 <Text color="gray.100" fontSize="md" fontWeight="bold">
                   {item.name}
                 </Text>
-                <Text color="gray.400" fontSize="sm">
+                <Text color="#c4c4cc" fontSize="sm">
                   {item.details}
                 </Text>
               </VStack>
               <TouchableOpacity>
-                <Icon as={Feather} name="plus-circle" size="md" color="blue.500" />
+                <Icon as={Feather} name="plus-circle" size="md" color="gray.100" />
               </TouchableOpacity>
             </HStack>
           )}
         />
-        <Button title="Salvar" mt={4} />
+        <Center><Button title="Salvar" mt={4} /></Center>
+        
       </ScrollView>
     </VStack>
   );
