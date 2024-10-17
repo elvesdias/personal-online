@@ -47,7 +47,7 @@ export function ClientRegistration() {
         <VStack flex={1} bg="#121214">
           <ScreenHeader title="Cadastrar Aluno" />
           <ScrollView>
-            <Center mt={6} px={10}>
+            <Center mt={6} px={6}>
               {photoIsLoading ? (
                 <Skeleton
                   w={PHOTO_SIZE}
@@ -107,8 +107,8 @@ export function ClientRegistration() {
               {errors.telefone && touched.telefone && <Text color="red.500">{errors.telefone}</Text>}
             </Center>
 
-            <VStack px={10} mt={12} mb={9}>
-              <Heading color="gray.200" fontSize="md" fontFamily="heading" mb={2}>
+            <VStack px={6} mt={12} mb={9}>
+              <Heading color="gray.200" fontSize="md" fontFamily="heading" mb={2} pl={4}>
                 Alterar senha
               </Heading>
 
@@ -145,7 +145,7 @@ export function ClientRegistration() {
               />
               {errors.confirmeNovaSenha && touched.confirmeNovaSenha && <Text color="red.500">{errors.confirmeNovaSenha}</Text>}
 
-              <Button title="Cadastrar" mt={4} onPress={() => handleSubmit()} />
+              <Center><Button title="Cadastrar" mt={4} onPress={() => handleSubmit()} /></Center>
             </VStack>
           </ScrollView>
         </VStack>

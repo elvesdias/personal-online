@@ -37,7 +37,7 @@ export function Workout() {
         </TouchableOpacity>
       </HStack>
 
-      <ScrollView pt={4} p={4}>
+      <ScrollView pt={4} p={6}>
         <FlatList
           data={exercises}
           keyExtractor={(item) => item.id.toString()}

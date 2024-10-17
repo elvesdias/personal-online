@@ -8,6 +8,8 @@ import {
 
 import { Routes } from "./src/routes";
 import { Workout } from "@screens/Workout";
+import { ClientRegistration } from "@screens/ClientRegistration";
+import { Profile } from "@screens/Profile";
 
 import { THEME } from "./src/theme";
 import { Loading } from "./src/components/loading";
@@ -25,7 +27,7 @@ export default function App() {
           backgroundColor="transparent"
           translucent
         />
-        {fontsLoaded ? <Workout /> : <Loading />}
+        {fontsLoaded ? <Profile /> : <Loading />}
       </NativeBaseProvider>
     </AuthProvider>
   );
