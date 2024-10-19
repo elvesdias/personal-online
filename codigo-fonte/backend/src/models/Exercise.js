@@ -16,6 +16,9 @@ const exerciseSchema = new Schema(
       type: Number,
       required: true,
     },
+    restTime: {
+      type: Number
+    },
     demo: {
       type: String,
       required: true,

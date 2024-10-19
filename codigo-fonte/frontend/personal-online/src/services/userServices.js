@@ -1,9 +1,10 @@
 import axios from "axios"
 
-export async function userupdate(name, email, password, confirmPassword) {
+export async function userupdate(name, email, phone, password, confirmPassword) {
     const response = await axios.post("http://10.0.0.168:3333/users/edit", {
         name: name,
         email: email,
+        phone: phone,
         password: password,
         confirmPassword: confirmPassword
     })

@@ -4,6 +4,12 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
+ /*   type: {
+      type: String,
+      enum: ["admin", "aluno"],
+      required: true,
+      default: ''
+    },*/
     name: {
       type: String,
       required: true,
@@ -18,12 +24,24 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    phone: {
+      type: String,
+      required: true,
+      default: ''
+    },
     avatar: {
       type: String,
     },
     historicos: {
-      type: Array
-    }
+      type: Array,
+    },
+    alunos: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        default: ''
+      },
+    ],
   },
   { timestamps: true }
 );

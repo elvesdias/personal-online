@@ -1,4 +1,4 @@
-import { userRegister } from '../services/authServices'
+import { userRegister } from "../services/authServices";
 import { useNavigation } from "@react-navigation/native";
 import {
   VStack,
@@ -23,6 +23,7 @@ import { Button } from "@components/Button";
 type FormDataProps = {
   name: string;
   email: string;
+  phone: string;
   password: string;
   password_confirm: string;
 };
@@ -30,6 +31,7 @@ type FormDataProps = {
 const signUpSchema = yup.object({
   name: yup.string().required("Informe o nome."),
   email: yup.string().required("Informe o e-mail.").email("E-mail inválido."),
+  phone: yup.string().required("Informe o contato."),
   password: yup
     .string()
     .required("Informe a senha.")
@@ -58,14 +60,17 @@ export function SignUp() {
   function handleSignUp({
     name,
     email,
+    phone,
     password,
     password_confirm,
   }: FormDataProps) {
-    userRegister(name, email, password, password_confirm).then(res => {
-      navigation.navigate("signIn")
-    }).catch(err => {
-      console.log(err.response.data.message);
-    })
+    userRegister(name, email, phone, password, password_confirm)
+      .then((res) => {
+        navigation.navigate("signIn");
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
   }
 
   return (
@@ -76,22 +81,21 @@ export function SignUp() {
       <Image
         source={BackgroundImg}
         w={1000}
-       
         defaultSource={BackgroundImg}
         alt="Aparece na tela uma sala de treinamento de boxe com alguns sacos de boxe"
         resizeMode="contain"
-        position={'absolute'}
+        position={"absolute"}
       />
-      <VStack flex={1} px={10} pb={16}>
-        <Center my={40}>
+      <VStack flex={1} px={6}>
+        <Center my={36}>
           {/* <Image source={Logo} alt="GymGo" /> */}
           {/* <Text color="gray.100" fontSize="sm"> */}
-            {/* Sua motivação diária */}
+          {/* Sua motivação diária */}
           {/* </Text> */}
         </Center>
 
         <Center>
-          <Text style ></Text> 
+          <Text style></Text>
           <Heading color="gray.100" fontSize="xl" mb={4} fontFamily="heading">
             {/* Crie sua conta */}
           </Heading>
@@ -126,6 +130,20 @@ export function SignUp() {
 
           <Controller
             control={control}
+            name="phone"
+            render={({ field: { onChange, value } }) => (
+              <Input
+                placeholder="Contato"
+                keyboardType="phone-pad"
+                onChangeText={onChange}
+                value={value}
+                errorMessage={errors.phone?.message}
+              />
+            )}
+          />
+
+          <Controller
+            control={control}
             name="password"
             render={({ field: { onChange, value } }) => (
               <Input
@@ -153,17 +171,16 @@ export function SignUp() {
               />
             )}
           />
-
-          <Button
-            title="Criar e acessar"
-            mt={0}
-            onPress={handleSubmit(handleSignUp)}
-            w={290}
-            h={14}
-          
-           
-         
-          />
+          <Center>
+            {" "}
+            <Button
+              title="Criar e acessar"
+              mt={0}
+              onPress={handleSubmit(handleSignUp)}
+              w={290}
+              h={14}
+            />
+          </Center>
         </Center>
 
         <Button

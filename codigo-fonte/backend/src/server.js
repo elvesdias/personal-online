@@ -4,6 +4,8 @@ const UserRoutes = require('./routes/UserRoutes')
 const ExerciseRoutes = require('./routes/ExerciseRoutes')
 const ExercicioGrupoRoutes = require('./routes/ExercicioGrupoRoutes')
 const GrupoRoutes = require('./routes/GrupoRoutes')
+const ProgramRoutes = require('./routes/ProgramRoutes')
+const WorkoutRoutes = require('./routes/WorkoutRoutes')
 
 const app = express();
 
@@ -32,7 +34,8 @@ app.use('/users', UserRoutes)
 app.use('/', ExerciseRoutes)
 app.use('/', ExercicioGrupoRoutes)
 app.use('/', GrupoRoutes)
-
+app.use('/', ProgramRoutes);
+app.use('/', WorkoutRoutes);
 
 const PORT = 3333;
 app.listen(PORT, function () {

@@ -8,13 +8,14 @@ const getUserByToken = require("../helpers/get-user-by-token");
 
 module.exports = class UserController {
   static async register(req, res) {
-    const { name, email, password, confirmPassword } = req.body;
+    console.log(req.body)
+    const {name, email, phone, password, confirmPassword } = req.body;
 
     // Validations
-    if (!name || !email || !password || !confirmPassword) {
+    if (!name || !email || !phone || !password || !confirmPassword) {
       return res
         .status(422)
-        .json({ message: "Informe todos os campos (nome, email e senha)." });
+        .json({ message: "Informe todos os campos (nome, email, contato e senha)." });
     }
 
     if (password !== confirmPassword) {
@@ -36,6 +37,7 @@ module.exports = class UserController {
     const user = new User({
       name,
       email,
+      phone,
       password: passwordHash,
     });
 

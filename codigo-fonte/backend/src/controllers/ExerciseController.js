@@ -11,6 +11,14 @@ const exerciseController = {
         thumb: req.body.thumb,
       };
 
+      // Check if exercise exists
+      const checkExerciseExists = await ExerciseModel.findOne({ name: req.body.name });
+
+
+      if (checkExerciseExists) {
+        return res.status(409).json({ message: "Este exercício já existe." });
+      }
+
       const response = await ExerciseModel.create(exercise);
 
       res.status(201).json({ response, message: "Created" });
@@ -77,7 +85,10 @@ const exerciseController = {
         thumb: req.body.thumb,
       };
 
-      const updatedExercise = await ExerciseModel.findByIdAndUpdate(id, exercise);
+      const updatedExercise = await ExerciseModel.findByIdAndUpdate(
+        id,
+        exercise
+      );
 
       if (!updatedExercise) {
         res.status(404).json({ message: "Not Found" });

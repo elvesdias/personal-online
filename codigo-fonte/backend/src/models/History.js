@@ -5,16 +5,14 @@ const { Schema } = mongoose;
 const historySchema = new Schema(
   {
     user_id: {
-      //references
       type: Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
-    exercise_id: {
-      //references
-      type: Schema.Types.ObjectId,
-      ref: "Exercises",
-      required: true,
+    workoutId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Workout',
+      required: true
     },
   },
   { timestamps: true }
