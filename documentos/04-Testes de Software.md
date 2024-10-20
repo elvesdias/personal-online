@@ -191,6 +191,21 @@ Este plano de testes cobre os requisitos funcionais propostos, com cenários que
 
  
 # Evidências de Testes de Software
+
+**Testes por pares**
+
+
+Este documento tem como objetivo apresentar uma estratégia detalhada para a realização de testes que assegurem não apenas a funcionalidade, mas também a confiabilidade, desempenho e usabilidade do software desenvolvido.  
+
+  
+Tipo de Teste   
+
+Sucesso: Tem o objetivo de verificar se as funcionalidades funcionam corretamente.   
+
+Erro: Tem o objetivo de verificar se o sistema trata erros de maneira correta.  
+
+
+
  **Cadastro Login testes**
 - [Vídeo Teste de Cadastro e Login](https://github.com/user-attachments/assets/42f501f0-37cf-479e-8856-d47e3a2f57cc).
 - [Campos vazios](https://github.com/user-attachments/assets/0a2efb91-4520-405a-b772-0d037def5c25)
@@ -198,5 +213,6 @@ Este plano de testes cobre os requisitos funcionais propostos, com cenários que
 - [Senha ou usuário incorreto](https://github.com/user-attachments/assets/ce8a9d34-2dc8-4244-b42b-80fd4a9678a5)
   # LOG ERROS/SUCESSO
 - [Erros ccadastrais](https://github.com/user-attachments/assets/5c20c4e8-f8d4-4951-86cf-69fd04797461)
+
 
   
