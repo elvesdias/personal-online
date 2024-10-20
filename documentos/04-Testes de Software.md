@@ -192,7 +192,7 @@ Este plano de testes cobre os requisitos funcionais propostos, com cenários que
  
 # Evidências de Testes de Software
 
-**Testes por pares**
+#Testes por pares#
 
 
 Este documento tem como objetivo apresentar uma estratégia detalhada para a realização de testes que assegurem não apenas a funcionalidade, mas também a confiabilidade, desempenho e usabilidade do software desenvolvido.  
