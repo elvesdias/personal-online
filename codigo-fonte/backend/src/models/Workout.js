@@ -11,7 +11,7 @@ const workoutSchema = new mongoose.Schema({
     required: true
   },
   day: {
-    type: String // Ex.: "Segunda-feira"
+    type: String 
   },
   exercises: [{
     type: mongoose.Schema.Types.ObjectId,
