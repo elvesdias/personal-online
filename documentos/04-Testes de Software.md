@@ -217,16 +217,11 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 <p align="center">
   
- <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/STATUS.PNG" width="250"> 
+ <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/STATUS.PNG" width="500"> 
  
  </p>
 
- <p align="center">
   
- <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf%2017.PNG" height="250">
- 
- </p>
- 
 <p align="center">
   
  <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/TESTE%20RF%2005.PNG" height="350">
@@ -243,12 +238,19 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/EVIDENCIA%20TELA.jpeg" width="350">
 </p>
 
+<p align="center">
+  
+ <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf%2017.PNG" height="250">
+ 
+ </p>
 
   <p align="center">
   
  <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/EVID%C3%8ANCIA%201.PNG">
  
  </p>
+
+ 
 
  **Cadastro Login testes**
 - [Vídeo Teste de Cadastro e Login](https://github.com/user-attachments/assets/42f501f0-37cf-479e-8856-d47e3a2f57cc).
