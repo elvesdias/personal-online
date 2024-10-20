@@ -24,9 +24,5 @@ export function userRegister(name, email, phone, password, confirmPassword) {
     })
 }
 
-export async function userlogin(email, password) {
-    return await axios.post("http://10.0.0.168:3333/users/login", {
-        email: email,
-        password: password,
-    })
+
 }
