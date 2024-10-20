@@ -25,9 +25,9 @@ export function HomeHeader() {
     return (
         <HStack backgroundColor="blueGray.800" pt={16} pb={5} px={8} alignItems="center" >
             <UserPhoto
-                source={{ uri: 'https://github.com/elvesdias.png' }}
+                source={userData && userData.phone}
                 alt="Imagem do usuário"
-                size={16}
+                size={32}
                 mr={4}
             />
             <VStack flex={1} >
@@ -35,7 +35,7 @@ export function HomeHeader() {
                     Olá,
                 </Text>
 
-                <Heading color="gray.500" fontSize="md" fontFamily="heading">
+                <Heading color="#ffffff" fontSize="md" fontFamily="heading">
                     {userData && userData.name}
                  
                 </Heading>

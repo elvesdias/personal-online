@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export async function userupdate(name, email, phone, password, confirmPassword) {
-    const response = await axios.post("http://10.0.0.168:3333/users/edit", {
+    const response = await axios.post("http://192.168.1.5:3333/users/edit", {
         name: name,
         email: email,
         phone: phone,
@@ -12,7 +12,7 @@ export async function userupdate(name, email, phone, password, confirmPassword) 
 }
 
 export async function userhistory(user_id, exercise_id) {
-    const response = await axios.post("http://10.0.0.168:3333/users/edit", {
+    const response = await axios.post("http://192.168.1.5:3333/users/edit", {
         user_id: user_id,
         exercise_id: exercise_id
     })
@@ -20,5 +20,5 @@ export async function userhistory(user_id, exercise_id) {
 }
 
 export function getUserById(id){
-    return axios.get(`http://10.0.0.168:3333/users/${id}`)
+    return axios.get(`http://192.168.1.5:3333/users/${id}`)
 }

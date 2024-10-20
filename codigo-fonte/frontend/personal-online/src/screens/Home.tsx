@@ -20,7 +20,7 @@ export function Home() {
     }
 useEffect(()=> { 
     async function getExercise() {
-        const response = await axios.get("http://192.168.1.4:3333/exercises")
+        const response = await axios.get("http://192.168.1.5:3333/exercises")
         setExercises(response.data)
         // console.log(response.data)
     }
@@ -71,7 +71,14 @@ useEffect(()=> {
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-    <Button title="Marcar como realizado" mt={4} />
+              
+    <Button title="Marcar como realizado" mt={4}
+     w={320}
+     h={14}
+     bottom={3}
+    
+     alignSelf="center" />
+    
 
             </VStack>
         </VStack>
