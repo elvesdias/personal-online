@@ -203,15 +203,6 @@ __Sucesso:__ Tem o objetivo de verificar se as funcionalidades funcionam correta
 __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira correta.  
 
 
-Evidências de Testes de Software	
-	
-Abaixo estão as evidências dos testes propostos no Plano de Testes, os registros foram registrados da aplicação em funcionamento nos dispositivos dos desenvolvedores do projeto.	
-	
-	
-Status	
-         O teste foi feito e está passando pelos critérios de êxito. 	
-         O teste foi feito e não está passando pelos critérios de êxito.  	
-         O teste não foi feito  
  
 # Evidências de Testes de Software
 
