@@ -196,7 +196,7 @@ Este plano de testes cobre os requisitos funcionais propostos, com cenários que
 Este documento tem como objetivo apresentar uma estratégia detalhada para a realização de testes que assegurem não apenas a funcionalidade, mas também a confiabilidade, desempenho e usabilidade do software desenvolvido.  
 
   
-*Tipo de Teste*   
+## Tipo de Teste
 
 Sucesso: Tem o objetivo de verificar se as funcionalidades funcionam corretamente.   
 
