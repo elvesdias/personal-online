@@ -189,10 +189,8 @@ Realizar logout após o uso do sistema.
 
 Este plano de testes cobre os requisitos funcionais propostos, com cenários que visam garantir que cada funcionalidade atenda ao seu propósito dentro do sistema.
 
- 
-# Evidências de Testes de Software
 
-***Testes por pares***
+# Testes por pares
 
 
 Este documento tem como objetivo apresentar uma estratégia detalhada para a realização de testes que assegurem não apenas a funcionalidade, mas também a confiabilidade, desempenho e usabilidade do software desenvolvido.  
@@ -213,8 +211,9 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 Status	
          O teste foi feito e está passando pelos critérios de êxito. 	
          O teste foi feito e não está passando pelos critérios de êxito.  	
-         O teste não foi feito  	
-
+         O teste não foi feito  
+ 
+# Evidências de Testes de Software
 
  **Cadastro Login testes**
 - [Vídeo Teste de Cadastro e Login](https://github.com/user-attachments/assets/42f501f0-37cf-479e-8856-d47e3a2f57cc).
