@@ -205,6 +205,16 @@ Sucesso: Tem o objetivo de verificar se as funcionalidades funcionam corretament
 Erro: Tem o objetivo de verificar se o sistema trata erros de maneira correta.  
 
 
+Evidências de Testes de Software	
+	
+Abaixo estão as evidências dos testes propostos no Plano de Testes, os registros foram registrados da aplicação em funcionamento nos dispositivos dos desenvolvedores do projeto.	
+	
+	
+Status	
+         O teste foi feito e está passando pelos critérios de êxito. 	
+         O teste foi feito e não está passando pelos critérios de êxito.  	
+         O teste não foi feito  	
+
 
  **Cadastro Login testes**
 - [Vídeo Teste de Cadastro e Login](https://github.com/user-attachments/assets/42f501f0-37cf-479e-8856-d47e3a2f57cc).
