@@ -198,9 +198,9 @@ Este documento tem como objetivo apresentar uma estratégia detalhada para a rea
   
 ## Tipo de Teste
 
-Sucesso: Tem o objetivo de verificar se as funcionalidades funcionam corretamente.   
+__Sucesso:__ Tem o objetivo de verificar se as funcionalidades funcionam corretamente.   
 
-Erro: Tem o objetivo de verificar se o sistema trata erros de maneira correta.  
+__Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira correta.  
 
 
 Evidências de Testes de Software	
