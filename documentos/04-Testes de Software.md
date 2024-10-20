@@ -205,13 +205,13 @@ __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira corret
 
 <p align="center">
       
-   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/RF%2005.PNG" height="300">
+   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/RF%2005.PNG" width="350" height="300">
 
 </p>
 
 <p align="center">
       
-   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf17%202.PNG" height="300">
+   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf17%202.PNG" width="500" height="300">
 
 </p>
 
