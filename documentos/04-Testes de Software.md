@@ -252,12 +252,24 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 <img width="1000" height="300" alt="ErroEmail" src="https://github.com/user-attachments/assets/edf5f778-415f-49a6-b852-ef833bb24f26">
 
  </p>
+ 
+ <p align="center">  
+
+![EmailInvalido](https://github.com/user-attachments/assets/dcef8882-3e19-49b7-a0ed-387ab76e320d)
+ 
+ </p>
 
 <p align="center">
 
   <img width="1000" height="300" alt="ErroEmailCadastrado" src="https://github.com/user-attachments/assets/77f58b36-2ddc-45a6-b9c8-7f1f78fd7d2c">
 
 </p>
+
+<p align="center">  
+
+![EmailEmUso](https://github.com/user-attachments/assets/778faf19-ddfb-46eb-8af3-fc9d6a1b2290)
+ 
+ </p>
 
 <p align="center">
 
