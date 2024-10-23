@@ -214,9 +214,12 @@ __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira corret
    <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf%20117.PNG" width="1000" height="300">
 
 </p>
- 
-<img width="700" alt="Credenciais validas" src="https://github.com/user-attachments/assets/fba5df25-78a6-4bcb-b9d1-8e29f26ae068">
 
+<p align="center">
+  
+  <img width="700" alt="Credenciais validas" src="https://github.com/user-attachments/assets/fba5df25-78a6-4bcb-b9d1-8e29f26ae068">
+
+</p>
 
 
  
