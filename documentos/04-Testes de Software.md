@@ -217,7 +217,7 @@ __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira corret
 
 <p align="center">
   
-  <img width="700" alt="Credenciais validas" src="https://github.com/user-attachments/assets/fba5df25-78a6-4bcb-b9d1-8e29f26ae068">
+  <img width="1000" height="300" alt="Credenciais validas" src="https://github.com/user-attachments/assets/fba5df25-78a6-4bcb-b9d1-8e29f26ae068">
 
 </p>
 
