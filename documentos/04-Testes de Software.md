@@ -202,6 +202,11 @@ __Sucesso:__ Tem o objetivo de verificar se as funcionalidades funcionam correta
 
 __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira correta.  
 
+<p align="center">
+  
+  <img width="1000" height="300" alt="Credenciais validas" src="https://github.com/user-attachments/assets/fba5df25-78a6-4bcb-b9d1-8e29f26ae068">
+
+</p>
 
 <p align="center">
       
@@ -214,13 +219,6 @@ __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira corret
    <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf%20117.PNG" width="1000" height="300">
 
 </p>
-
-<p align="center">
-  
-  <img width="1000" height="300" alt="Credenciais validas" src="https://github.com/user-attachments/assets/fba5df25-78a6-4bcb-b9d1-8e29f26ae068">
-
-</p>
-
 
  
 # Evidências de Testes de Software
@@ -236,6 +234,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
   </p>
 
 ## RF-01
+
 <p align="center">
 
 <img width="1000" height="300" alt="ErroEmail" src="https://github.com/user-attachments/assets/edf5f778-415f-49a6-b852-ef833bb24f26">
@@ -255,6 +254,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 </p>
 
 ## RF-05  
+
 <p align="center">
   
  <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/TESTE%20RF%2005.PNG" height="300">
