@@ -265,6 +265,13 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 </p>
 
+<p align="center">
+  
+<img width="684" alt="Errosenha" src="https://github.com/user-attachments/assets/21f9ca8d-210c-4679-9d08-36c9cf407ee6">
+ 
+ </p>
+
+
 ## RF-05  
 
 <p align="center">
