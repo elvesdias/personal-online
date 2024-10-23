@@ -243,7 +243,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
  <p align="center">
 
-
+![PostmanRegister](https://github.com/user-attachments/assets/676873ec-2a39-4fe0-a94f-fd06af3a1374)
 
  </p>
 
