@@ -247,6 +247,12 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
  </p>
 
+  <p align="center">
+
+![VerificarErroRegister](https://github.com/user-attachments/assets/cea5ac9d-3e7a-43d9-b3c0-f40b6f852846)
+
+  </p>
+
 <p align="center">
 
 <img width="1000" height="300" alt="ErroEmail" src="https://github.com/user-attachments/assets/edf5f778-415f-49a6-b852-ef833bb24f26">
