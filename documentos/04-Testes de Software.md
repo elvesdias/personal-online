@@ -235,6 +235,24 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
  
   </p>
 
+## RF-01
+<p align="center">
+
+<img width="1000" height="300" alt="ErroEmail" src="https://github.com/user-attachments/assets/edf5f778-415f-49a6-b852-ef833bb24f26">
+
+ </p>
+
+<p align="center">
+
+  <img width="1000" height="300" alt="ErroEmailCadastrado" src="https://github.com/user-attachments/assets/77f58b36-2ddc-45a6-b9c8-7f1f78fd7d2c">
+
+</p>
+
+<p align="center">
+
+<img width="1000" height="300" alt="Errosenha" src="https://github.com/user-attachments/assets/04619f28-acc0-4544-9ad6-de4f9e3f8bb3">
+
+</p>
 ## RF-05  
 <p align="center">
   
