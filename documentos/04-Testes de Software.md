@@ -253,6 +253,14 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
   </p>
 
+  ## Correção: Estava faltando password_confirm na função userRegister:
+
+ <p align="center">
+
+  ![Função Corrigida](https://github.com/user-attachments/assets/e9d70c2b-a039-43c1-877c-ef65ac3eff28)
+
+  </p>
+
 <p align="center">
 
 <img width="1000" height="300" alt="ErroEmail" src="https://github.com/user-attachments/assets/edf5f778-415f-49a6-b852-ef833bb24f26">
