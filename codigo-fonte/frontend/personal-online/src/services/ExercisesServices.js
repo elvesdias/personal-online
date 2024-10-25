@@ -54,7 +54,7 @@ module.exports = exerciseController;
         .post((req, res) => exerciseController.create(req, res));
 
     export async function exerciseCreate(name, email, password, confirmPassword) {
-        const response = await axios.post("http://192.168.1.5:3333/users/edit", {
+        const response = await axios.post("http://10.0.0.168:3333/users/edit", {
             name: req.body.name,
             series: req.body.series,
             repetitions: req.body.repetitions,

@@ -9,7 +9,7 @@ import { UserPhoto } from "./UserPhoto";
 import { getUserById } from "@services/userServices";
 
 export function HomeHeader() {
-    const { signed, setSigned, userId } = useContext(AuthContext)
+    const { signed, userId, setSigned } = useContext(AuthContext)
 
     const [userData, setUserData] = useState({})
 
@@ -25,9 +25,9 @@ export function HomeHeader() {
     return (
         <HStack backgroundColor="blueGray.800" pt={16} pb={5} px={8} alignItems="center" >
             <UserPhoto
-                source={userData && userData.phone}
+                source={{ uri: 'https://github.com/elvesdias.png' }}
                 alt="Imagem do usuário"
-                size={32}
+                size={16}
                 mr={4}
             />
             <VStack flex={1} >
@@ -35,7 +35,7 @@ export function HomeHeader() {
                     Olá,
                 </Text>
 
-                <Heading color="#ffffff" fontSize="md" fontFamily="heading">
+                <Heading color="gray.500" fontSize="md" fontFamily="heading">
                     {userData && userData.name}
                  
                 </Heading>

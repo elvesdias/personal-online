@@ -4,12 +4,12 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
- /*   type: {
+    type: {
       type: String,
       enum: ["admin", "aluno"],
       required: true,
       default: ''
-    },*/
+    },
     name: {
       type: String,
       required: true,

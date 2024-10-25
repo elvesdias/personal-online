@@ -23,7 +23,6 @@ export function Exercise() {
     const navigation = useNavigation<AppNavigatorRoutesProps>();
     const route = useRoute();
     const exercise = route.params.data;
-    console.log(exercise);
 
     const [isChecked, setIsChecked] = useState(false);
 

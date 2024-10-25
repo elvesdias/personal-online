@@ -37,12 +37,19 @@ export function Profile() {
 
   return (
     <Formik
-      initialValues={{ nome: '', email: '', telefone: '', senhaAntiga: '', novaSenha: '', confirmeNovaSenha: '' }}
-      validationSchema={validationSchema}
-      onSubmit={(values) => {
+    initialValues={{ name: '', email: '', phone: '', old_password: '', new_password: '' }}
+    validationSchema={validationSchema}
+    onSubmit={(values) => {
         console.log(values);
-      }}
-    >
+        // userRegister("aluno", values.name, values.email, values.phone, values.password, values.password_confirm)
+        //     .then((res) => {
+        //         console.log("Deu certo")
+        //     })
+        //     .catch((err) => {
+        //         console.log("Deu ruim");
+        //     });
+    }}
+>
       {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
         <VStack flex={1} bg="#121214">
           <ScreenHeader title="Perfil" />
@@ -80,10 +87,10 @@ export function Profile() {
                 placeholder="Nome"
                 onChangeText={handleChange('nome')}
                 onBlur={handleBlur('nome')}
-                value={values.nome}
-                isInvalid={!!(errors.nome && touched.nome)}
+                value={values.name}
+                isInvalid={!!(errors.name && touched.name)}
               />
-              {errors.nome && touched.nome && <Text color="red.500">{errors.nome}</Text>}
+              {errors.name && touched.name && <Text color="red.500">{errors.name}</Text>}
 
               <Input
                 bg="gray.600"
@@ -101,10 +108,10 @@ export function Profile() {
                 placeholder="(99) 99999-9999"
                 onChangeText={handleChange('telefone')}
                 onBlur={handleBlur('telefone')}
-                value={values.telefone}
-                isInvalid={!!(errors.telefone && touched.telefone)}
+                value={values.phone}
+                isInvalid={!!(errors.phone && touched.phone)}
               />
-              {errors.telefone && touched.telefone && <Text color="red.500">{errors.telefone}</Text>}
+              {errors.phone && touched.phone && <Text color="red.500">{errors.phone}</Text>}
             </Center>
 
             <VStack px={6} mt={12} mb={9} >
@@ -118,10 +125,10 @@ export function Profile() {
                 secureTextEntry
                 onChangeText={handleChange('senhaAntiga')}
                 onBlur={handleBlur('senhaAntiga')}
-                value={values.senhaAntiga}
-                isInvalid={!!(errors.senhaAntiga && touched.senhaAntiga)}
+                value={values.old_password}
+                isInvalid={!!(errors.old_password && touched.old_password)}
               />
-              {errors.senhaAntiga && touched.senhaAntiga && <Text color="red.500">{errors.senhaAntiga}</Text>}
+              {errors.old_password && touched.old_password && <Text color="red.500">{errors.old_password}</Text>}
 
               <Input
                 bg="gray.600"
@@ -129,21 +136,10 @@ export function Profile() {
                 secureTextEntry
                 onChangeText={handleChange('novaSenha')}
                 onBlur={handleBlur('novaSenha')}
-                value={values.novaSenha}
-                isInvalid={!!(errors.novaSenha && touched.novaSenha)}
+                value={values.new_password}
+                isInvalid={!!(errors.new_password && touched.new_password)}
               />
-              {errors.novaSenha && touched.novaSenha && <Text color="red.500">{errors.novaSenha}</Text>}
-
-              <Input
-                bg="gray.600"
-                placeholder="Confirme a nova senha"
-                secureTextEntry
-                onChangeText={handleChange('confirmeNovaSenha')}
-                onBlur={handleBlur('confirmeNovaSenha')}
-                value={values.confirmeNovaSenha}
-                isInvalid={!!(errors.confirmeNovaSenha && touched.confirmeNovaSenha)}
-              />
-              {errors.confirmeNovaSenha && touched.confirmeNovaSenha && <Text color="red.500">{errors.confirmeNovaSenha}</Text>}
+              {errors.new_password && touched.new_password && <Text color="red.500">{errors.new_password}</Text>}
 
               <Center><Button title="Atualizar" mt={4} onPress={() => handleSubmit()} /></Center>
             </VStack>

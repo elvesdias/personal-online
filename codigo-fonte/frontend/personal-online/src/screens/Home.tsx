@@ -11,25 +11,27 @@ import { Button } from "@components/Button";
 export function Home() {
     const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
     const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
-    const [groupSelected, setGroupSelected] = useState('TREINO A'); 
+    const [groupSelected, setGroupSelected] = useState('TREINO A');
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
     function handleOpenExerciseDetails() {
         navigation.navigate('exercise');
     }
-useEffect(()=> { 
-    async function getExercise() {
-        const response = await axios.get("http://192.168.1.5:3333/exercises")
-        setExercises(response.data)
-        // console.log(response.data)
-    }
-    getExercise()
- }, [])
+    useEffect(() => {
+        async function getExercise() {
+            const response = await axios.get("http://10.0.0.168:3333/exercises")
+            setExercises(response.data)
+            // console.log(response.data)
+        }
+        getExercise()
+    }, [])
     return (
         <VStack flex={1}>
             <HomeHeader />
-
+            <Text color="gray.200" fontSize="sm">
+                Aluno Home
+            </Text>
             <FlatList
                 data={groups}
                 keyExtractor={item => item}
@@ -63,22 +65,15 @@ useEffect(()=> {
                     data={exercises}
                     keyExtractor={item => item}
                     renderItem={({ item }) => (
-                        <ExerciseCard 
-                        data = {item}
+                        <ExerciseCard
+                            data={item}
                             onPress={handleOpenExerciseDetails}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-              
-    <Button title="Marcar como realizado" mt={4}
-     w={320}
-     h={14}
-     bottom={3}
-    
-     alignSelf="center" />
-    
+                <Button title="Marcar como realizado" mt={4} />
 
             </VStack>
         </VStack>

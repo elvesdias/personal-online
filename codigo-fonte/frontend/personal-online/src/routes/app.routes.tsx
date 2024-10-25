@@ -1,5 +1,7 @@
 import { Platform } from "react-native";
 import { useTheme } from "native-base";
+import { useContext } from "react";
+import AuthContext from "../context/authContext";
 import {
     createBottomTabNavigator,
     BottomTabNavigationProp,
@@ -10,6 +12,7 @@ import HistorySvg from "@assets/history.svg";
 import ProfileSvg from "@assets/profile.svg";
 
 import { Home } from "@screens/Home";
+import { HomePersonal } from "@screens/HomePersonal";
 import { Exercise } from "@screens/Exercise";
 import { History } from "@screens/History";
 import { Profile } from "@screens/Profile";
@@ -30,6 +33,8 @@ export function AppRoutes() {
 
     const iconSize = sizes[7];
 
+    const { userType } = useContext(AuthContext);
+
     return (
         <Navigator
             screenOptions={{
@@ -46,7 +51,30 @@ export function AppRoutes() {
                 },
             }}
         >
-            <Screen
+            {userType == "admin" ? (
+                <Screen
+                    name="home"
+                    component={HomePersonal}
+                    options={{
+                        tabBarIcon: ({ color }) => (
+                            <HomeSvg fill={color} width={iconSize} height={iconSize} />
+                        ),
+                    }}
+                />
+            ) : (
+
+                <Screen
+                    name="home"
+                    component={Home}
+                    options={{
+                        tabBarIcon: ({ color }) => (
+                            <HomeSvg fill={color} width={iconSize} height={iconSize} />
+                        ),
+                    }}
+                />
+            )}
+
+            {/* <Screen
                 name="home"
                 component={Home}
                 options={{
@@ -54,7 +82,7 @@ export function AppRoutes() {
                         <HomeSvg fill={color} width={iconSize} height={iconSize} />
                     ),
                 }}
-            />
+            /> */}
 
             <Screen
                 name="history"
@@ -81,8 +109,6 @@ export function AppRoutes() {
                 component={Exercise}
                 options={{ tabBarButton: () => null }}
             />
-
-
         </Navigator>
     );
 }
