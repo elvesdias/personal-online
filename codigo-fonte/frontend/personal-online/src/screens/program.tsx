@@ -1,65 +1,60 @@
-import { HomeHeader } from "@components/HomeHeader";
-import { Button } from "@components/Button";  // ultilizar se a barra não aparecer ao executar
-import { useNavigation } from '@react-navigation/native'; // sem navegação
-import { useState } from "react";
-import { Group } from "@components/Group";
-import { VStack, HStack, Heading, Text, FlatList } from 'native-base';
-import { ExerciseCard } from "@components/ExerciseCard"; // Pode apagar essa importação se conflitar com a tela ou substituila 
+import { useEffect, useState } from 'react';
+import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
+import axios from 'axios';
+import { HomeHeader } from '@components/HomeHeader';
+import { Group } from '@components/Group'
+import { ExerciseCard } from '@components/ExerciseCard';
+import { HomeCard } from '@components/HomeCard';
+import { useNavigation } from '@react-navigation/native';
+import { AppNavigatorRoutesProps } from '@routes/app.routes';
+import { Button } from "@components/Button";
 
-export function Home() {
-    const [grupos, setGrupos] = useState(['Programa 1', 'Programa 2', 'Programa 3']);
-    const [grupoSelecionado, setGrupoSelecionado] = useState(grupos[0]); // Estado para o grupo selecionado
-    const [exercicios, setExercicios] = useState([]); // definir os dados de exercícios
+export function Program() {
 
-    const handleAbrirDetalhesExercicio = (exercicio) => {
-        // Lógica de navegação para abrir os detalhes do exercício pronto mas não definido por isso vermelho 
-    };
+    const [programs, setPrograms] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
 
+    const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+    function handleOpenExerciseDetails() {
+        navigation.navigate('exercise');
+    }
+    useEffect(() => {
+        async function getProgram() {
+            const response = await axios.get("http://10.0.0.168:3333/programs")
+            setPrograms(response.data)
+            // console.log(response.data)
+        }
+        getProgram()
+    }, [])
     return (
         <VStack flex={1}>
             <HomeHeader />
-
-            <FlatList
-                data={grupos}
-                keyExtractor={item => item}
-                renderItem={({ item }) => (
-                    <Group
-                        name={item}
-                        isActive={grupoSelecionado === item}
-                        onPress={() => setGrupoSelecionado(item)}
-                    />
-                )}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                _contentContainerStyle={{ px: 8 }}
-                my={10}
-                maxH={10}
-                minH={10}
-            />
-
+           
             <VStack flex={1} px={8}>
                 <HStack justifyContent="space-between" mb={5}>
                     <Heading color="gray.200" fontSize="md" fontFamily="heading">
-                        Exercícios
+                        Programas
                     </Heading>
 
                     <Text color="gray.200" fontSize="sm">
-                        {exercicios.length}
+                        {programs.length}
                     </Text>
                 </HStack>
 
                 <FlatList
-                    data={exercicios}
+                    data={programs}
                     keyExtractor={item => item}
                     renderItem={({ item }) => (
-                        <ExerciseCard 
+                        <HomeCard
                             data={item}
-                            onPress={handleAbrirDetalhesExercicio}
+                            onPress={handleOpenExerciseDetails}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
+        
+
             </VStack>
         </VStack>
     );

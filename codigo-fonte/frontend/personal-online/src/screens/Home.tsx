@@ -4,14 +4,14 @@ import axios from 'axios';
 import { HomeHeader } from '@components/HomeHeader';
 import { Group } from '@components/Group'
 import { ExerciseCard } from '@components/ExerciseCard';
+import { HomeCard } from '@components/HomeCard';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
 
 export function Home() {
-    const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
-    const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
-    const [groupSelected, setGroupSelected] = useState('TREINO A');
+
+    const [programs, setPrograms] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
@@ -19,12 +19,12 @@ export function Home() {
         navigation.navigate('exercise');
     }
     useEffect(() => {
-        async function getExercise() {
-            const response = await axios.get("http://10.0.0.168:3333/exercises")
-            setExercises(response.data)
+        async function getProgram() {
+            const response = await axios.get("http://10.0.0.168:3333/programs")
+            setPrograms(response.data)
             // console.log(response.data)
         }
-        getExercise()
+        getProgram()
     }, [])
     return (
         <VStack flex={1}>
@@ -32,40 +32,23 @@ export function Home() {
             <Text color="gray.200" fontSize="sm">
                 Aluno Home
             </Text>
-            <FlatList
-                data={groups}
-                keyExtractor={item => item}
-                renderItem={({ item }) => (
-                    <Group
-                        name={item}
-                        isActive={groupSelected === item}
-                        onPress={() => setGroupSelected(item)}
-                    />
-                )}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                _contentContainerStyle={{ px: 8 }}
-                my={10}
-                maxH={10}
-                minH={10}
-            />
-
+           
             <VStack flex={1} px={8}>
                 <HStack justifyContent="space-between" mb={5}>
                     <Heading color="gray.200" fontSize="md" fontFamily="heading">
-                        Exercícios
+                        Programas
                     </Heading>
 
                     <Text color="gray.200" fontSize="sm">
-                        {exercises.length}
+                        {programs.length}
                     </Text>
                 </HStack>
 
                 <FlatList
-                    data={exercises}
+                    data={programs}
                     keyExtractor={item => item}
                     renderItem={({ item }) => (
-                        <ExerciseCard
+                        <HomeCard
                             data={item}
                             onPress={handleOpenExerciseDetails}
                         />
@@ -73,7 +56,7 @@ export function Home() {
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-                <Button title="Marcar como realizado" mt={4} />
+        
 
             </VStack>
         </VStack>

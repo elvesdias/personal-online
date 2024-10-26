@@ -74,6 +74,7 @@ export function SignIn() {
                     <Input
                         placeholder="Senha"
                         secureTextEntry
+                        keyboardType="numbers-and-punctuation"
                         value={password}
                         onChangeText={setPassword}
                     />

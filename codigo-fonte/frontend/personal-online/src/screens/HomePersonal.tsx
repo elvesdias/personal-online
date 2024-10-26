@@ -1,83 +1,102 @@
-import { useEffect, useState } from 'react';
-import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
-import axios from 'axios';
-import { HomeHeader } from '@components/HomeHeader';
-import { Group } from '@components/Group'
-import { ExerciseCard } from '@components/ExerciseCard';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigatorRoutesProps } from '@routes/app.routes';
-import { Button } from "@components/Button";
+import { useEffect, useState } from "react";
+import {
+  HStack,
+  VStack,
+  FlatList,
+  Heading,
+  Text,
+  useNativeBase,
+  Center,
+  Box,
+  Input,
+  Icon,
+} from "native-base";
+import axios from "axios";
+import { HomeHeader } from "@components/HomeHeader";
+import { Group } from "@components/Group";
+import { ExerciseCard } from "@components/ExerciseCard";
+import { HomeCard } from "@components/HomeCard";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { ButtonApp } from "@components/ButtonApp";
+import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 
 export function HomePersonal() {
-    const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
-    const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
-    const [groupSelected, setGroupSelected] = useState('TREINO A');
+  const [users, setUsers] = useState([]);
 
-    const navigation = useNavigation<AppNavigatorRoutesProps>();
+  const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-    function handleOpenExerciseDetails() {
-        navigation.navigate('exercise');
+  function handleOpenExerciseDetails() {
+    navigation.navigate("exercise");
+  }
+  useEffect(() => {
+    async function getAlunos() {
+      const response = await axios.get("http://10.0.0.168:3333/users");
+      setUsers(response.data);
+      // console.log(response.data)
     }
+    getAlunos();
+  }, []);
+  return (
+    <VStack flex={1}>
+      <HomeHeader />
 
-    useEffect(() => {
-        async function getExercise() {
-            const response = await axios.get("http://10.0.0.168:3333/exercises")
-            setExercises(response.data)
-            // console.log(response.data)
-        }
-        getExercise()
-    }, [])
+      <VStack flex={1} px={8}>
+        <Box px={4} mt={4} mb={4}>
+          <Input
+            placeholder="Pesquisar Aluno"
+            bg="#ffffff"
+            borderWidth={0}
+            borderRadius="sm"
+            color="white"
+            _focus={{ bg: "gray.600" }}
+            InputRightElement={
+              <Icon
+                as={FontAwesome}
+                name="search"
+                size={5}
+                mr={3}
+                color="#29292e"
+              />
+            }
+          />
+        </Box>
 
-    return (
-        <VStack flex={1}>
-            <HomeHeader />
-            <Text color="gray.200" fontSize="sm">
-                Personal Home
-            </Text>
-            <FlatList
-                data={groups}
-                keyExtractor={item => item}
-                renderItem={({ item }) => (
-                    <Group
-                        name={item}
-                        isActive={groupSelected === item}
-                        onPress={() => setGroupSelected(item)}
-                    />
-                )}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                _contentContainerStyle={{ px: 8 }}
-                my={10}
-                maxH={10}
-                minH={10}
+        <HStack justifyContent="space-between" mb={5}>
+          <Heading color="gray.200" fontSize="md" fontFamily="heading">
+            Alunos
+          </Heading>
+
+          <Text color="gray.200" fontSize="sm">
+            {users.length}
+          </Text>
+        </HStack>
+
+        <FlatList
+          data={users}
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => (
+            <HomeCard
+              cardName={item.name}
+              data={item}
+              onPress={handleOpenExerciseDetails}
             />
+          )}
+          showsVerticalScrollIndicator={false}
+          _contentContainerStyle={{ paddingBottom: 20 }}
+        />
 
-            <VStack flex={1} px={8}>
-                <HStack justifyContent="space-between" mb={5}>
-                    <Heading color="gray.200" fontSize="md" fontFamily="heading">
-                        Exercícios
-                    </Heading>
-
-                    <Text color="gray.200" fontSize="sm">
-                        {exercises.length}
-                    </Text>
-                </HStack>
-
-                <FlatList
-                    data={exercises}
-                    keyExtractor={item => item}
-                    renderItem={({ item }) => (
-                        <ExerciseCard
-                            data={item}
-                            onPress={handleOpenExerciseDetails}
-                        />
-                    )}
-                    showsVerticalScrollIndicator={false}
-                    _contentContainerStyle={{ paddingBottom: 20 }}
-                />
-                <Button title="Marcar como realizado" mt={4} />
-
-            </VStack>
-        </VStack>
-    );
+        <Center>
+          <ButtonApp
+            marginBottom={4}
+            title="Cadastrar Aluno"
+            bg="#ffffff"
+            _text={{ color: "#121214" }}
+            mt={4}
+            onPress={() => handleSubmit()} /*Ir pra tela de cadastro de alunos*/
+          />
+        </Center>
+      </VStack>
+    </VStack>
+  );
 }

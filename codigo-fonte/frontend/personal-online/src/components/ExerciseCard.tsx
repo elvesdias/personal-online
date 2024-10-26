@@ -8,7 +8,6 @@ type Props = TouchableOpacityProps & {
 
 export function ExerciseCard(data,{ ...rest }: Props) {
     const navigation = useNavigation();
-    console.log(data);
     data = data.data;
     return (
         <TouchableOpacity onPress={() =>  navigation.navigate('exercise', {data:data})}>
