@@ -116,22 +116,22 @@ module.exports = class UserController {
         const token = getToken(req);
         const user = await getUserByToken(token);
 
-        const { name, email, password, confirmPassword } = req.body;
+        const { name, email, phone, password, confirmPassword } = req.body;
 
         let image = "";
 
         // Validations
-        if (!name || !email || !password || !confirmPassword) {
+        if (!name || !email || !phone || !password || !confirmPassword) {
             return res
                 .status(422)
-                .json({ message: "Informe todos os campos (nome, email e senha)." });
+                .json({ message: "Informe todos os campos (nome, email, telefone, senha e conmfirmação de senha)." });
         }
 
         // Check if email has already taken
         const checkEmailExists = await User.findOne({ email: email });
 
         if (user.email !== email && checkEmailExists) {
-            return res.status(422).json({ message: "Este e-mail já está em uso." });
+            return res.status(422).send({ message: "Este e-mail já está em uso." });
         }
 
         user.email = email;
@@ -150,7 +150,14 @@ module.exports = class UserController {
             // Return User updated data
             await User.findOneAndUpdate(
                 { _id: user._id },
-                { $set: user },
+                { $set: {
+                    name: name,
+                    email: email,
+                    // type: user.type,
+                    phone: phone,
+                    password: password,
+                    confirmPassword: confirmPassword,
+                } },
                 { new: true }
             );
 

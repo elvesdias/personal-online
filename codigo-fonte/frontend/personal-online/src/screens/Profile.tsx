@@ -45,8 +45,8 @@ export function Profile() {
             validationSchema={validationSchema}
             onSubmit={(values) => {
                 userupdate(userId, values.nome, values.email, values.telefone, values.novaSenha, values.confirmeNovaSenha, userToken)
-                // .then(res => console.log(res))
-                // .catch(err => console.log(err))
+                .then(res => alert(res.message))
+                .catch(err => alert(err.message))
             }}
         >
             {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (

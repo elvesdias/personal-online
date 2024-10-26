@@ -2,8 +2,6 @@ import axios from "axios"
 import { API_URL } from "@env"
 
 export async function userupdate(id, name, email, phone, password, confirmPassword, token) {
-    console.log(token);
-
     try{
         const response = await axios.patch(`${API_URL}/users/edit/${id}`,
             {
@@ -20,9 +18,10 @@ export async function userupdate(id, name, email, phone, password, confirmPasswo
             }
         )
 
-        console.log(response.data);
+        return response.data
     }catch(err){
         console.log(err);
+        return err;
     }
 }
 
