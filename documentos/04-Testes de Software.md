@@ -334,6 +334,14 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/RF%201117.png" width="350">
 </p>
 
+## RF - 17
+
+<p align="center">
+      
+   ![GoogleMeets03](https://github.com/user-attachments/assets/b27608ef-6be8-47f9-bce3-c47b60bea032)
+
+</p>   
+
  **Cadastro Login testes**
 - [Vídeo Teste de Cadastro e Login](https://github.com/user-attachments/assets/42f501f0-37cf-479e-8856-d47e3a2f57cc).
 - [Campos vazios](https://github.com/user-attachments/assets/0a2efb91-4520-405a-b772-0d037def5c25)
