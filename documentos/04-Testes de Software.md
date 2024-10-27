@@ -338,7 +338,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 <p align="center">
       
-   ![GoogleMeets03](https://github.com/user-attachments/assets/b27608ef-6be8-47f9-bce3-c47b60bea032)
+  <img width="1000" height="300" alt="RF17-02" src="https://github.com/user-attachments/assets/621927a9-651b-4ac3-938f-68f13e997f98">
 
 </p>   
 
