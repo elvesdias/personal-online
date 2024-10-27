@@ -216,7 +216,7 @@ __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira corret
 
 <p align="center">
       
-   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/rf%20117.PNG" width="1000" height="300">
+<img width="1000" height="300" alt="TelaPrincipalRF17" src="https://github.com/user-attachments/assets/30e558d4-0ec7-47cb-96ae-1f7e6f6e3ca8">   
 
 </p>
 
