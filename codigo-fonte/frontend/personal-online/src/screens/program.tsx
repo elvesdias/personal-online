@@ -8,15 +8,22 @@ import { HomeCard } from '@components/HomeCard';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
+import { useRoute } from '@react-navigation/native';
 
 export function Program() {
 
-    const [programs, setPrograms] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
+    const [programs, setPrograms] = useState();
+    const route = useRoute();
+    const { name, day, workouts } = route.params as any; // acessa os parâmetros passados
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-    function handleOpenExerciseDetails() {
-        navigation.navigate('exercise');
+    function handleOpenExerciseDetails(workout: any) {
+        navigation.navigate('workout', {
+            name: workout.name,
+            day: workout.day,
+            exercises: workout.exercises
+        });
     }
     useEffect(() => {
         async function getProgram() {
@@ -33,21 +40,23 @@ export function Program() {
             <VStack flex={1} px={8}>
                 <HStack justifyContent="space-between" mb={5}>
                     <Heading color="gray.200" fontSize="md" fontFamily="heading">
-                        Programas
+                        {name}
                     </Heading>
 
                     <Text color="gray.200" fontSize="sm">
-                        {programs.length}
+                        {day}
                     </Text>
                 </HStack>
 
                 <FlatList
-                    data={programs}
-                    keyExtractor={item => item}
+                    data={workouts}
+                    // keyExtractor={item => item}
                     renderItem={({ item }) => (
                         <HomeCard
                             data={item}
-                            onPress={handleOpenExerciseDetails}
+                            cardName={item.name}
+                            cardSub={item.day}
+                            onPress={() => handleOpenExerciseDetails(item)}
                         />
                     )}
                     showsVerticalScrollIndicator={false}

@@ -24,7 +24,7 @@ export function HomeHeader() {
   }, [userId]);
 
   return (
-    <HStack backgroundColor="#032243" pt={16} pb={5} px={8} alignItems="center">
+    <HStack backgroundColor="#032243" pt={10} pb={2} px={5} marginBottom={10} alignItems="center">
       <UserPhoto
         source={{
           uri: userData && userData.avatar ? userData.avatar : undefined,

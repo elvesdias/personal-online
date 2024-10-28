@@ -21,13 +21,16 @@ import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { ButtonApp } from "@components/ButtonApp";
 import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 
+import { alunosJson } from "./../services/testDatasAlunos.json" // dados estáticos para testes
+
+
 export function HomePersonal() {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState(alunosJson);
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-  function handleOpenExerciseDetails() {
-    navigation.navigate("exercise");
+  function handleOpenAlunoDetails(programs: any) {
+    navigation.navigate('homeAluno', programs);
   }
   useEffect(() => {
     async function getAlunos() {
@@ -79,7 +82,8 @@ export function HomePersonal() {
             <HomeCard
               cardName={item.name}
               data={item}
-              onPress={handleOpenExerciseDetails}
+              onPress={() => handleOpenAlunoDetails(item.programs)}
+              padding={2}
             />
           )}
           showsVerticalScrollIndicator={false}

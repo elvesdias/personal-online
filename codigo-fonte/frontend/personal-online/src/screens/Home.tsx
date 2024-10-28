@@ -8,15 +8,34 @@ import { HomeCard } from '@components/HomeCard';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
+import { programasJson } from "./../services/testDatas.json" // dados estáticos para testes
+
+import { useRoute } from '@react-navigation/native';
+
 
 export function Home() {
 
-    const [programs, setPrograms] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
+    const route = useRoute();
+
+    let programsRoute = route.params as any; // acessa os parâmetros passados
+    if(!programsRoute){
+        programsRoute = programasJson;
+        console.log('nao teve obj na rota')
+
+    } else {
+        // programsRoute = programsRoute.programs;
+    }
+    
+    const [programs, setPrograms] = useState(programsRoute);
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-    function handleOpenExerciseDetails() {
-        navigation.navigate('exercise');
+    function handleOpenExerciseDetails(item: any) {
+        navigation.navigate('program', {
+            name: item.name,
+            day: item.day,
+            workouts: item.workouts
+        });
     }
     useEffect(() => {
         async function getProgram() {
@@ -29,9 +48,6 @@ export function Home() {
     return (
         <VStack flex={1}>
             <HomeHeader />
-            <Text color="gray.200" fontSize="sm">
-                Aluno Home
-            </Text>
            
             <VStack flex={1} px={8}>
                 <HStack justifyContent="space-between" mb={5}>
@@ -46,17 +62,19 @@ export function Home() {
 
                 <FlatList
                     data={programs}
-                    keyExtractor={item => item}
+                    // keyExtractor={item => item}
                     renderItem={({ item }) => (
                         <HomeCard
-                            data={item}
-                            onPress={handleOpenExerciseDetails}
+                            // data={item}
+                            onPress={() => handleOpenExerciseDetails(item)}
+                            cardName={item.name}
+                            cardSub={item.workouts.length}
+                            sufix={item.workouts.length === 1 ? 'Treino' : 'Treinos'}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-        
 
             </VStack>
         </VStack>

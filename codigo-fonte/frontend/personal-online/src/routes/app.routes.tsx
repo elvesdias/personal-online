@@ -14,16 +14,22 @@ import ProfileSvg from "@assets/profile.svg";
 import { Home } from "@screens/Home";
 import { HomePersonal } from "@screens/HomePersonal";
 //import { HomeAluno } from "@screens/HomeAluno";
+import { Workout } from "@screens/Workout";
 import { Exercise } from "@screens/Exercise";
 import { History } from "@screens/History";
 import { Profile } from "@screens/Profile";
+import { Program } from "@screens/program";
+
 
 type AppRoutes = {
   home: undefined;
  // HomeAluno: undefined;
+  program: undefined;
   exercise: undefined;
   history: undefined;
   profile: undefined;
+  workout: undefined
+  homeAluno: undefined
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -36,6 +42,16 @@ export function AppRoutes() {
   const iconSize = sizes[7];
 
   const { userType } = useContext(AuthContext);
+
+
+
+  ///
+  //
+  //
+  //
+  // const userType = 'admin'; // apagar essa linha, apenas para testes
+  //
+  //
 
   return (
     <Navigator
@@ -75,15 +91,10 @@ export function AppRoutes() {
         />
       )}
 
-      {/* <Screen
-        name="HomeAluno"
-        component={HomeAluno}
-        options={{
-          tabBarIcon: ({ color }) => (
-            <HomeSvg fill={color} width={iconSize} height={iconSize} />
-          ),
-        }}
-      /> */}
+      <Screen
+        name="homeAluno"
+        component={Home}
+      />
 
       <Screen
         name="history"
@@ -109,6 +120,16 @@ export function AppRoutes() {
         name="exercise"
         component={Exercise}
         options={{ tabBarButton: () => null }}
+      />
+
+      <Screen
+        name="program"
+        component={Program}
+      />
+
+      <Screen
+        name="workout"
+        component={Workout}
       />
     </Navigator>
   );

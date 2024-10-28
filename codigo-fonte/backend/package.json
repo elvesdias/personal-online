@@ -10,6 +10,7 @@
   "author": "GymGo - Eixo 4 - PUC Minas",
   "license": "ISC",
   "dependencies": {
+    "api-nodejs": "file:",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
