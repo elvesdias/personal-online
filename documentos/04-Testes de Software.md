@@ -348,6 +348,20 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 </p>
 
+## RF-16
+
+<p align="center">
+      
+<img width="1000" height="300" alt="RF16-Senha" src="https://github.com/user-attachments/assets/17c8f286-b23d-4761-b499-ad75383f4a29">
+
+</p>
+
+<p align="center">
+      
+![imagem (1)](https://github.com/user-attachments/assets/a209cdab-ba35-4fa1-8498-c6c762946f8b)
+
+</p>
+
 ## RF - 17
 
 <p align="center">
