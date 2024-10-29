@@ -31,7 +31,7 @@ export function Program() {
             setPrograms(response.data)
             // console.log(response.data)
         }
-        getProgram()
+        // getProgram()
     }, [])
     return (
         <VStack flex={1}>

@@ -7,6 +7,12 @@ import { useRoute } from '@react-navigation/native';
 import { ScreenHeader } from "@components/ScreenHeader";
 import { Button } from "@components/Button";
 
+import BodySvg from '@assets/body.svg';
+import SeriesSvg from '@assets/series.svg';
+import RepetitionsSvg from '@assets/repetitions.svg';
+import Icons from 'react-native-vector-icons/MaterialIcons';
+
+
 // const exercises = [
 //   { id: 1, name: "Agachamento com Barra", details: "4 série x 12 rep x 1' intervalo" },
 //   { id: 2, name: "Agachamento Sumô", details: "4 série x 12 rep x 1' intervalo" },
@@ -67,9 +73,12 @@ export function Workout() {
                 <Text color="gray.100" fontSize="md" fontWeight="bold">
                   {item.name}
                 </Text>
-                {/* <Text color="#c4c4cc" fontSize="sm">
-                  {item.details}
-                </Text> */}
+
+                <Icons name="dumbbell" size={30} color="#4CAF50" />
+                <Text color="#c4c4cc" fontSize="sm">
+                  {item.series}
+                </Text>
+                
               </VStack>
               <TouchableOpacity>
                 <Icon as={Feather} name="plus-circle" size="md" color="gray.100" />

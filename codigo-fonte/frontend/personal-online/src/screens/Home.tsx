@@ -39,9 +39,9 @@ export function Home() {
     }
     useEffect(() => {
         async function getProgram() {
+            console.log('use effect home')
             const response = await axios.get("http://10.0.0.168:3333/programs")
             setPrograms(response.data)
-            // console.log(response.data)
         }
         getProgram()
     }, [])
