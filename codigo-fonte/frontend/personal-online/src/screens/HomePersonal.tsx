@@ -8,6 +8,8 @@ import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
 
+import { getExercicies } from '@services/ExercisesServices';
+
 export function HomePersonal() {
     const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
     const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
@@ -20,12 +22,17 @@ export function HomePersonal() {
     }
 
     useEffect(() => {
-        async function getExercise() {
-            const response = await axios.get("http://192.168.1.4:3333/exercises")
-            setExercises(response.data)
-            // console.log(response.data)
+        async function fetchExercicies() {
+            try{
+                const result = await getExercicies()
+                setExercises(result)
+                console.log(result);
+            }catch(err){
+                console.log(err);
+            }
         }
-        getExercise()
+
+        fetchExercicies()
     }, [])
 
     return (
@@ -34,7 +41,7 @@ export function HomePersonal() {
             <Text color="gray.200" fontSize="sm">
                 Personal Home
             </Text>
-            <FlatList
+            {/* <FlatList
                 data={groups}
                 keyExtractor={item => item}
                 renderItem={({ item }) => (
@@ -50,7 +57,7 @@ export function HomePersonal() {
                 my={10}
                 maxH={10}
                 minH={10}
-            />
+            /> */}
 
             <VStack flex={1} px={8}>
                 <HStack justifyContent="space-between" mb={5}>
@@ -59,13 +66,13 @@ export function HomePersonal() {
                     </Heading>
 
                     <Text color="gray.200" fontSize="sm">
-                        {exercises.length}
+                        {/* {exercises.length} */}
                     </Text>
                 </HStack>
 
                 <FlatList
                     data={exercises}
-                    keyExtractor={item => item}
+                    keyExtractor={(item, index) => item["_id"]}
                     renderItem={({ item }) => (
                         <ExerciseCard
                             data={item}

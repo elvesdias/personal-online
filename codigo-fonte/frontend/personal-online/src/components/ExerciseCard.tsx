@@ -26,11 +26,11 @@ export function ExerciseCard(data,{ ...rest }: Props) {
 
                 <VStack flex={1}>
                     <Heading fontSize="lg" color="white" fontFamily="heading">
-                       Puxada Frontal
+                       {data.name}
                     </Heading>
 
                     <Text fontSize="sm" color="gray.200" mt={1} numberOfLines={2} >
-                        4 séries x 10 repetições
+                        {data.series} séries x {data.repetitions} repetições
                     </Text>
                 </VStack>
 
