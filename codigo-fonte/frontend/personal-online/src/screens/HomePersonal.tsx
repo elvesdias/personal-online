@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import {
   HStack,
   VStack,
@@ -20,21 +20,40 @@ import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { ButtonApp } from "@components/ButtonApp";
 import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
+import AuthContext from "src/context/authContext";
+
+// import { URL_API } from '@env'
+const URL_API = 'http://localhost:3333'
 
 import { alunosJson } from "./../services/testDatasAlunos.json" // dados estáticos para testes
 
 
 export function HomePersonal() {
   const [users, setUsers] = useState(alunosJson);
+  const [search, setSearch] = useState("");
+  const [users_filtered, setUsersFiltered] = useState(users);
+  const { userId } = useContext(AuthContext)
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
   function handleOpenAlunoDetails(programs: any) {
     navigation.navigate('homeAluno', programs);
   }
+
+  function handleSubmit(){
+    navigation.navigate('ClientRegistration')
+  }
+
+  const filtering = (string: String) => {
+    setSearch(string)
+    let array_clone = [...users];
+    let res = array_clone.filter( item => item.name.toLowerCase().includes(string.toLowerCase()))
+    setUsersFiltered(res)
+  }
+
   useEffect(() => {
     async function getAlunos() {
-      const response = await axios.get("http://10.0.0.168:3333/users");
+      const response = await axios.get(`${URL_API}/users/admin/${userId}`);
       setUsers(response.data);
       // console.log(response.data)
     }
@@ -52,6 +71,8 @@ export function HomePersonal() {
             borderWidth={0}
             borderRadius="sm"
             color="white"
+            onChangeText={filtering}
+            value={search}
             _focus={{ bg: "gray.600" }}
             InputRightElement={
               <Icon
@@ -76,7 +97,7 @@ export function HomePersonal() {
         </HStack>
 
         <FlatList
-          data={users}
+          data={users_filtered}
           keyExtractor={(item) => item}
           renderItem={({ item }) => (
             <HomeCard

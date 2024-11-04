@@ -1,5 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
+// import { URL_API } from '@env'
+const URL_API = 'http://localhost:3333'
+
 import axios from 'axios';
 import { HomeHeader } from '@components/HomeHeader';
 import { Group } from '@components/Group'
@@ -8,23 +11,17 @@ import { HomeCard } from '@components/HomeCard';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
-import { programasJson } from "./../services/testDatas.json" // dados estáticos para testes
+// import { programasJson } from "./../services/testDatas.json" // dados estáticos para testes
 
 import { useRoute } from '@react-navigation/native';
-
+import AuthContext from "src/context/authContext";
 
 export function Home() {
 
     const route = useRoute();
+    const { userId } = useContext(AuthContext)
 
     let programsRoute = route.params as any; // acessa os parâmetros passados
-    if(!programsRoute){
-        programsRoute = programasJson;
-        console.log('nao teve obj na rota')
-
-    } else {
-        // programsRoute = programsRoute.programs;
-    }
     
     const [programs, setPrograms] = useState(programsRoute);
 
@@ -39,9 +36,11 @@ export function Home() {
     }
     useEffect(() => {
         async function getProgram() {
-            console.log('use effect home')
-            const response = await axios.get("http://10.0.0.168:3333/programs")
-            setPrograms(response.data)
+            console.log('programa: ' + programs);
+            if(!programs){
+                const response = await axios.get(`${URL_API}/users/${userId}`)
+                setPrograms(response.data.user.programs)
+            }
         }
         getProgram()
     }, [])
@@ -56,7 +55,7 @@ export function Home() {
                     </Heading>
 
                     <Text color="gray.200" fontSize="sm">
-                        {programs.length}
+                        {programs && programs.length}
                     </Text>
                 </HStack>
 

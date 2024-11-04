@@ -13,6 +13,7 @@ import ProfileSvg from "@assets/profile.svg";
 
 import { Home } from "@screens/Home";
 import { HomePersonal } from "@screens/HomePersonal";
+import { ClientRegistration } from "@screens/ClientRegistration";
 //import { HomeAluno } from "@screens/HomeAluno";
 import { Workout } from "@screens/Workout";
 import { Exercise } from "@screens/Exercise";
@@ -24,6 +25,7 @@ import { Program } from "@screens/program";
 type AppRoutes = {
   home: undefined;
  // HomeAluno: undefined;
+  ClientRegistration: undefined;
   program: undefined;
   exercise: undefined;
   history: undefined;
@@ -129,6 +131,11 @@ export function AppRoutes() {
 
       <Screen
         name="workout"
+        component={Workout}
+      />
+
+      <Screen
+        name="ClientRegistration"
         component={Workout}
       />
     </Navigator>

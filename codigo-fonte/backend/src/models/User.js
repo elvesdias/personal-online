@@ -1,14 +1,17 @@
 const mongoose = require("../database/conn");
-
+ 
 const { Schema } = mongoose;
-
+ 
 const userSchema = new Schema(
   {
     type: {
       type: String,
       enum: ["admin", "aluno"],
       required: true,
-      default: ''
+      default: "",
+    },
+    adminId: {
+      type: String,
     },
     name: {
       type: String,
@@ -27,25 +30,64 @@ const userSchema = new Schema(
     phone: {
       type: String,
       required: true,
-      default: ''
+      default: "",
     },
     avatar: {
       type: String,
     },
-    historicos: {
-      type: Array,
-    },
-    alunos: [
+    historicos: [
       {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        default: ''
+        id: {
+          type: Schema.Types.ObjectId, 
+          required: true,
+          unique: true 
+        },
+        workoutId: {
+          type: String,
+          required: true,
+        },
+        data: {
+          type: Date,
+          default: Date.now, // Define a data atual como padrão
+        },
+      },
+    ],
+    programs: [
+      {
+        id: {
+          type: Schema.Types.ObjectId, 
+          required: true,
+          unique: true 
+        },
+        name: {
+          type: String,
+          required: true,
+        },
+        workouts: [
+          {
+            id: {
+              type: Schema.Types.ObjectId, 
+              required: true,
+              unique: true 
+            },
+            name: {
+              type: String,
+              required: true,
+            },
+            exercises: [
+              {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Exercise",
+              },
+            ],
+          },
+        ],
       },
     ],
   },
   { timestamps: true }
 );
-
+ 
 const User = mongoose.model("User", userSchema);
-
+ 
 module.exports = User;

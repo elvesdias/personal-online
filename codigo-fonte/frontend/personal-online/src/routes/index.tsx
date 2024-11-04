@@ -19,8 +19,7 @@ export function Routes() {
     return (
         <Box flex={1} bg="gray.700">
             <NavigationContainer theme={theme}>
-                {/* {signed ? <AppRoutes /> : <AuthRoutes />} */}
-                <AppRoutes></AppRoutes>
+                {signed ? <AppRoutes /> : <AuthRoutes />}
             </NavigationContainer>
         </Box>
     );

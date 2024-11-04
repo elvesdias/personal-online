@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList, Center, Heading } from "native-base";
 import { Feather } from "@expo/vector-icons";
 import { useRoute } from '@react-navigation/native';
@@ -11,21 +11,20 @@ import BodySvg from '@assets/body.svg';
 import SeriesSvg from '@assets/series.svg';
 import RepetitionsSvg from '@assets/repetitions.svg';
 import Icons from 'react-native-vector-icons/MaterialIcons';
-
-
-// const exercises = [
-//   { id: 1, name: "Agachamento com Barra", details: "4 série x 12 rep x 1' intervalo" },
-//   { id: 2, name: "Agachamento Sumô", details: "4 série x 12 rep x 1' intervalo" },
-//   { id: 3, name: "Leg Press", details: "4 série x 12 rep x 1' intervalo" },
-//   { id: 4, name: "Supino Inclinado", details: "4 série x 12 rep x 1' intervalo" },
-//   { id: 5, name: "Afundo", details: "4 série x 12 rep x 1' intervalo" },
-//   { id: 6, name: "Stiff", details: "4 série x 12 rep x 1' intervalo" },
-// ];
+import { color } from "native-base/lib/typescript/theme/styled-system";
 
 export function Workout() {
   const [search, setSearch] = useState("");
   const route = useRoute();
   const { name, day, exercises } = route.params as any
+  const [exercises_filtered, setExercises] = useState(exercises);
+
+  const filtering = (string: String) => {
+    setSearch(string)
+    let array_clone = [...exercises];
+    let res = array_clone.filter( item => item.name.toLowerCase().includes(string.toLowerCase()))
+    setExercises(res)
+  }
 
   return (
     <VStack flex={1} bg="#121214">
@@ -33,11 +32,12 @@ export function Workout() {
       
       <HStack p={4} pt={6} alignItems="center">
         <Input
+          style={{color: 'white'}}
           flex={1}
           bg="#202024"
           placeholder="Pesquisar Exercício"
           placeholderTextColor="gray.100"
-          onChangeText={setSearch}
+          onChangeText={filtering}
           value={search}
           _focus={{ borderColor: "gray.500", bg: "gray.600" }}
         />
@@ -58,7 +58,7 @@ export function Workout() {
 
       <ScrollView pt={4} p={6}>
         <FlatList
-          data={exercises}
+          data={exercises_filtered}
           keyExtractor={(item) => item.id.toString()}
           renderItem={({ item }) => (
             <HStack
@@ -73,12 +73,19 @@ export function Workout() {
                 <Text color="gray.100" fontSize="md" fontWeight="bold">
                   {item.name}
                 </Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
+                    {item.series} ser. 
+                  </Text>
+                  <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
+                    {item.repetitions} rep. 
+                  </Text>
 
-                <Icons name="dumbbell" size={30} color="#4CAF50" />
-                <Text color="#c4c4cc" fontSize="sm">
-                  {item.series}
-                </Text>
-                
+                  <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
+                  {/* <Icon as={Clock} name="clock" size={30} color="#4CAF50" />  */}
+                  {item.restTime} desc.
+                  </Text>
+                </View>
               </VStack>
               <TouchableOpacity>
                 <Icon as={Feather} name="plus-circle" size="md" color="gray.100" />

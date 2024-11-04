@@ -2,8 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const UserRoutes = require('./routes/UserRoutes')
 const ExerciseRoutes = require('./routes/ExerciseRoutes')
-const ExercicioGrupoRoutes = require('./routes/ExercicioGrupoRoutes')
-const GrupoRoutes = require('./routes/GrupoRoutes')
 const ProgramRoutes = require('./routes/ProgramRoutes')
 const WorkoutRoutes = require('./routes/WorkoutRoutes')
 
@@ -30,10 +28,8 @@ app.use((req, res, next) => {
 
 
 // Routes
-app.use('/users', UserRoutes)
-app.use('/', ExerciseRoutes)
-app.use('/', ExercicioGrupoRoutes)
-app.use('/', GrupoRoutes)
+app.use('/users', UserRoutes);
+app.use('/', ExerciseRoutes);
 app.use('/', ProgramRoutes);
 app.use('/', WorkoutRoutes);
 
@@ -41,11 +37,3 @@ const PORT = 3333;
 app.listen(PORT, function () {
   console.log(`Server is running on Port ${PORT}`);
 });
-
-
-
-// TESTES ABAIXO
-
-// const controler = require("./controllers/ExerciseController");
-// let a = controler.create();
-let b = 'b'
