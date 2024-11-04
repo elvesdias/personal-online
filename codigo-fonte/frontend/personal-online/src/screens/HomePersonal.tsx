@@ -25,11 +25,8 @@ import AuthContext from "src/context/authContext";
 // import { URL_API } from '@env'
 const URL_API = 'http://localhost:3333'
 
-import { alunosJson } from "./../services/testDatasAlunos.json" // dados estáticos para testes
-
-
 export function HomePersonal() {
-  const [users, setUsers] = useState(alunosJson);
+  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
   const [users_filtered, setUsersFiltered] = useState(users);
   const { userId } = useContext(AuthContext)
