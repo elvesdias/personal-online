@@ -109,7 +109,6 @@ const WorkoutController = {
         , program_id = req.body.program_id
       ;
     //   let workout_id_obj = new mongoose.Types.ObjectId();
-      
     
       let workout = {
         _id: req.body.workout_id,
