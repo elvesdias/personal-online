@@ -18,7 +18,7 @@ export function Program() {
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-    function handleOpenExerciseDetails(workout: any) {
+    function handleOpenWorkout(workout: any) {
         navigation.navigate('workout', {
             name: workout.name,
             day: workout.day,
@@ -56,7 +56,7 @@ export function Program() {
                             data={item}
                             cardName={item.name}
                             cardSub={item.day}
-                            onPress={() => handleOpenExerciseDetails(item)}
+                            onPress={() => handleOpenWorkout(item)}
                         />
                     )}
                     showsVerticalScrollIndicator={false}

@@ -23,7 +23,8 @@ import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 import AuthContext from "src/context/authContext";
 
 // import { URL_API } from '@env'
-const URL_API = 'http://localhost:3333'
+const URL_API = "http://10.0.0.168:3333"
+console.log(URL_API)
 
 export function HomePersonal() {
   const [users, setUsers] = useState([]);

@@ -1,7 +1,7 @@
-import axios from "axios"
+
 
 export async function exerciseCreate(name, email, password, confirmPassword) {
-    const response = await axios.post(`${API_URL}/users/edit`, {
+    const response = await axios.post("http://10.0.0.168:3333/users/edit", {
         name: req.body.name,
         series: req.body.series,
         repetitions: req.body.repetitions,
@@ -13,7 +13,7 @@ export async function exerciseCreate(name, email, password, confirmPassword) {
 
 export async function getExercicies() {
     try{
-        const response = await axios.get(`${API_URL}/exercises`)
+        const response = await axios.get("http://10.0.0.168:3333/exercises")
         return response.data
     }catch(err){
         console.log(err);

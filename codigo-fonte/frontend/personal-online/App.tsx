@@ -16,7 +16,7 @@ import { Program } from "@screens/program";
 import { HomePersonal } from "@screens/HomePersonal";
 
 import { THEME } from "./src/theme";
-// import { Loading } from "./src/components/Loading";
+import { Loading } from "./src/components/loading";
 
 import { AuthProvider } from "src/context/authContext";
 
@@ -24,16 +24,15 @@ export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
   return (
-      <AuthProvider>
-        <NativeBaseProvider theme={THEME}>
-          <StatusBar
-            barStyle="light-content"
-            backgroundColor="transparent"
-            translucent
-          />
-        {/* {fontsLoaded ? <Routes /> : <Loading />} */}
-        <Routes></Routes>
-        </NativeBaseProvider>
-      </AuthProvider>
+    <AuthProvider>
+      <NativeBaseProvider theme={THEME}>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
+        {fontsLoaded ? <Routes /> : <Loading />}
+      </NativeBaseProvider>
+    </AuthProvider>
   );
 }

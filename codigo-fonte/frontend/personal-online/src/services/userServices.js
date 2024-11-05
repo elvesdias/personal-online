@@ -1,10 +1,9 @@
 import axios from "axios"
-import {URL_API} from '@env'
 
 
 export async function userupdate(id, name, email, phone, password, confirmPassword, token) {
     try{
-        const response = await axios.patch(`${URL_API}/users/edit/${id}`,
+        const response = await axios.patch("http://10.0.0.168:3333/users/edit/${id}",
             {
                 name: name,
                 email: email,
@@ -27,7 +26,7 @@ export async function userupdate(id, name, email, phone, password, confirmPasswo
 }
 
 export async function userhistory(user_id, exercise_id) {
-    const response = await axios.post(`${URL_API}/users/edit`, {
+    const response = await axios.post("http://10.0.0.168:3333/users/edit", {
         user_id: user_id,
         exercise_id: exercise_id
     })
@@ -35,5 +34,5 @@ export async function userhistory(user_id, exercise_id) {
 }
 
 export function getUserById(id) {
-    return axios.get(`${URL_API}/users/${id}`)
+    return axios.get("http://10.0.0.168:3333/users/${id}")
 }
