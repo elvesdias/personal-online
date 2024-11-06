@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList, Center, Heading } from "native-base";
 import { Feather } from "@expo/vector-icons";
@@ -15,9 +15,10 @@ import { color } from "native-base/lib/typescript/theme/styled-system";
 
 export function Workout() {
   const [search, setSearch] = useState("");
+
   const route = useRoute();
   const { name, day, exercises } = route.params as any
-  const [exercises_filtered, setExercises] = useState(exercises);
+  const [exercises_filtered, setExercises] = useState();
 
   const filtering = (string: String) => {
     setSearch(string)
@@ -26,25 +27,13 @@ export function Workout() {
     setExercises(res)
   }
 
+  useEffect(() => {
+      setExercises(exercises)
+  }, [exercises])
+
   return (
     <VStack flex={1} bg="#121214">
       <ScreenHeader title="TREINO A" />
-      
-      <HStack p={4} pt={6} alignItems="center">
-        <Input
-          style={{color: 'white'}}
-          flex={1}
-          bg="#202024"
-          placeholder="Pesquisar Exercício"
-          placeholderTextColor="gray.100"
-          onChangeText={filtering}
-          value={search}
-          _focus={{ borderColor: "gray.500", bg: "gray.600" }}
-        />
-        <TouchableOpacity>
-          <Icon as={Feather} name="search" size="md" color="gray.100" ml={2} />
-        </TouchableOpacity>
-      </HStack>
 
       <HStack justifyContent="space-between" mb={1} mt={6} m={7}>
           <Heading color="gray.200" fontSize="md" fontFamily="heading">
@@ -59,7 +48,7 @@ export function Workout() {
       <ScrollView pt={4} p={6}>
         <FlatList
           data={exercises_filtered}
-          keyExtractor={(item) => item.id.toString()}
+          keyExtractor={(item) => item._id}
           renderItem={({ item }) => (
             <HStack
               bg="#202024"
@@ -82,7 +71,6 @@ export function Workout() {
                   </Text>
 
                   <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
-                  {/* <Icon as={Clock} name="clock" size={30} color="#4CAF50" />  */}
                   {item.restTime} desc.
                   </Text>
                 </View>

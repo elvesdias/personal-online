@@ -21,21 +21,18 @@ import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { ButtonApp } from "@components/ButtonApp";
 import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 import AuthContext from "src/context/authContext";
-
-// import { URL_API } from '@env'
-const URL_API = "http://10.0.0.168:3333"
-console.log(URL_API)
+import { URL_API } from '@env'
 
 export function HomePersonal() {
-  const [users, setUsers] = useState([]);
   const [search, setSearch] = useState("");
-  const [users_filtered, setUsersFiltered] = useState(users);
+  const [users, setUsers] = useState([]); // fixo
+  const [users_filtered, setUsersFilter] = useState([]); //variavel
   const { userId } = useContext(AuthContext)
 
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-  function handleOpenAlunoDetails(programs: any) {
-    navigation.navigate('homeAluno', programs);
+  function handleOpenAlunoDetails(id: any) {
+    navigation.navigate('homeAluno', id);
   }
 
   function handleSubmit(){
@@ -45,15 +42,18 @@ export function HomePersonal() {
   const filtering = (string: String) => {
     setSearch(string)
     let array_clone = [...users];
-    let res = array_clone.filter( item => item.name.toLowerCase().includes(string.toLowerCase()))
-    setUsersFiltered(res)
+
+    if(array_clone.length){
+      let res = array_clone.filter( item => item.name.toLowerCase().includes(string.toLowerCase()))
+      setUsersFilter(res)
+    }
   }
 
   useEffect(() => {
     async function getAlunos() {
       const response = await axios.get(`${URL_API}/users/admin/${userId}`);
       setUsers(response.data);
-      // console.log(response.data)
+      setUsersFilter(response.data);
     }
     getAlunos();
   }, []);
@@ -90,18 +90,18 @@ export function HomePersonal() {
           </Heading>
 
           <Text color="gray.200" fontSize="sm">
-            {users.length}
+            {users_filtered.length}
           </Text>
         </HStack>
 
         <FlatList
           data={users_filtered}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item._id}
           renderItem={({ item }) => (
             <HomeCard
               cardName={item.name}
               data={item}
-              onPress={() => handleOpenAlunoDetails(item.programs)}
+              onPress={() => handleOpenAlunoDetails(item._id)}
               padding={2}
             />
           )}

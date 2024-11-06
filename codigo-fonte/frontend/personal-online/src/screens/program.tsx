@@ -9,12 +9,13 @@ import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
 import { useRoute } from '@react-navigation/native';
+import { URL_API } from '@env'
 
 export function Program() {
 
-    const [programs, setPrograms] = useState();
+    const [workout, setWorkout] = useState();
     const route = useRoute();
-    const { name, day, workouts } = route.params as any; // acessa os parâmetros passados
+    const { name, day, workoutsRoute } = route.params as any; // acessa os parâmetros passados
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
@@ -26,13 +27,9 @@ export function Program() {
         });
     }
     useEffect(() => {
-        async function getProgram() {
-            const response = await axios.get("http://10.0.0.168:3333/programs")
-            setPrograms(response.data)
-            // console.log(response.data)
-        }
-        // getProgram()
-    }, [])
+        setWorkout(workoutsRoute)
+    }, [workoutsRoute])
+
     return (
         <VStack flex={1}>
             <HomeHeader />
@@ -49,7 +46,7 @@ export function Program() {
                 </HStack>
 
                 <FlatList
-                    data={workouts}
+                    data={workout}
                     // keyExtractor={item => item}
                     renderItem={({ item }) => (
                         <HomeCard

@@ -1,22 +1,35 @@
-import { useState } from "react";
-import { TouchableOpacity } from "react-native";
-import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList, Center } from "native-base";
+import { useEffect, useState } from "react";
+import { TouchableOpacity, View } from "react-native";
+import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList, Center, Heading } from "native-base";
 import { Feather } from "@expo/vector-icons";
+import { useRoute } from '@react-navigation/native';
 
 import { ScreenHeader } from "@components/ScreenHeader";
 import { Button } from "@components/Button";
 
-const exercises = [
-  { id: 1, name: "Agachamento com Barra", details: "4 série x 12 rep x 1' intervalo" },
-  { id: 2, name: "Agachamento Sumô", details: "4 série x 12 rep x 1' intervalo" },
-  { id: 3, name: "Leg Press", details: "4 série x 12 rep x 1' intervalo" },
-  { id: 4, name: "Supino Inclinado", details: "4 série x 12 rep x 1' intervalo" },
-  { id: 5, name: "Afundo", details: "4 série x 12 rep x 1' intervalo" },
-  { id: 6, name: "Stiff", details: "4 série x 12 rep x 1' intervalo" },
-];
+import BodySvg from '@assets/body.svg';
+import SeriesSvg from '@assets/series.svg';
+import RepetitionsSvg from '@assets/repetitions.svg';
+import Icons from 'react-native-vector-icons/MaterialIcons';
+import { color } from "native-base/lib/typescript/theme/styled-system";
 
-export function WorkoutRegistration() {
+export function Workout() {
   const [search, setSearch] = useState("");
+
+  const route = useRoute();
+  const { name, day, exercises } = route.params as any
+  const [exercises_filtered, setExercises] = useState();
+
+  const filtering = (string: String) => {
+    setSearch(string)
+    let array_clone = [...exercises];
+    let res = array_clone.filter( item => item.name.toLowerCase().includes(string.toLowerCase()))
+    setExercises(res)
+  }
+
+  useEffect(() => {
+      setExercises(exercises)
+  }, [exercises])
 
   return (
     <VStack flex={1} bg="#121214">
@@ -24,11 +37,12 @@ export function WorkoutRegistration() {
       
       <HStack p={4} pt={6} alignItems="center">
         <Input
+          style={{color: 'white'}}
           flex={1}
           bg="#202024"
           placeholder="Pesquisar Exercício"
           placeholderTextColor="gray.100"
-          onChangeText={setSearch}
+          onChangeText={filtering}
           value={search}
           _focus={{ borderColor: "gray.500", bg: "gray.600" }}
         />
@@ -37,10 +51,20 @@ export function WorkoutRegistration() {
         </TouchableOpacity>
       </HStack>
 
+      <HStack justifyContent="space-between" mb={1} mt={6} m={7}>
+          <Heading color="gray.200" fontSize="md" fontFamily="heading">
+              {name}
+          </Heading>
+
+          <Text color="gray.200" fontSize="sm">
+              {day}
+          </Text>
+      </HStack>
+
       <ScrollView pt={4} p={6}>
         <FlatList
-          data={exercises}
-          keyExtractor={(item) => item.id.toString()}
+          data={exercises_filtered}
+          keyExtractor={(item) => item._id}
           renderItem={({ item }) => (
             <HStack
               bg="#202024"
@@ -54,9 +78,19 @@ export function WorkoutRegistration() {
                 <Text color="gray.100" fontSize="md" fontWeight="bold">
                   {item.name}
                 </Text>
-                <Text color="#c4c4cc" fontSize="sm">
-                  {item.details}
-                </Text>
+                <View style={{flexDirection: 'row'}}>
+                  <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
+                    {item.series} ser. 
+                  </Text>
+                  <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
+                    {item.repetitions} rep. 
+                  </Text>
+
+                  <Text color="#c4c4cc" fontSize="xs" marginRight={2}>
+                  {/* <Icon as={Clock} name="clock" size={30} color="#4CAF50" />  */}
+                  {item.restTime} desc.
+                  </Text>
+                </View>
               </VStack>
               <TouchableOpacity>
                 <Icon as={Feather} name="plus-circle" size="md" color="gray.100" />

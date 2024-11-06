@@ -1,7 +1,7 @@
-
+import {URL_API} from '@env'
 
 export async function exerciseCreate(name, email, password, confirmPassword) {
-    const response = await axios.post("http://10.0.0.168:3333/users/edit", {
+    const response = await axios.post(`${URL_API}/users/edit`, {
         name: req.body.name,
         series: req.body.series,
         repetitions: req.body.repetitions,
@@ -13,7 +13,7 @@ export async function exerciseCreate(name, email, password, confirmPassword) {
 
 export async function getExercicies() {
     try{
-        const response = await axios.get("http://10.0.0.168:3333/exercises")
+        const response = await axios.get(`${URL_API}/exercises`)
         return response.data
     }catch(err){
         console.log(err);

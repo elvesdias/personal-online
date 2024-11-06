@@ -7,6 +7,7 @@ import AuthContext from '../context/authContext'; // Corrigi o caminho do AuthCo
 
 import Logo from "@assets/logo.png";
 import BackgroundImg from "@assets/background.png";
+import {URL_API} from '@env'
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";
@@ -26,7 +27,6 @@ export function SignIn() {
     async function handleLogin(email: String, password: String) {
         try {
             const res = await userlogin(email, password);
-            console.log(res.data);
             setUserType(res.data.usertype);
             setUserId(res.data.userId);
             setSigned(true);

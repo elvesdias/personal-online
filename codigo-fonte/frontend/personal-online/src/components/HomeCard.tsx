@@ -24,7 +24,7 @@ export function HomeCard({ cardName, cardSub, sufix, padding = 6, ...rest }: Hom
           margin={0}
           ml={3}
         >
-          <Heading fontSize="md" color="white" fontFamily="heading" top={cardSub ? 0 : 3}>
+          <Heading fontSize="md" color="white" fontFamily="heading" top={cardSub !== undefined ? 0 : 3}>
             {cardName}
           </Heading>
 

@@ -43,7 +43,7 @@ export function AppRoutes() {
 
   const iconSize = sizes[7];
 
-  const { userType } = useContext(AuthContext);
+  // const { userType } = useContext(AuthContext);
 
 
 
@@ -51,7 +51,7 @@ export function AppRoutes() {
   //
   //
   //
-  // const userType = 'admin'; // apagar essa linha, apenas para testes
+  const userType = 'admin'; // apagar essa linha, apenas para testes
   //
   //
 

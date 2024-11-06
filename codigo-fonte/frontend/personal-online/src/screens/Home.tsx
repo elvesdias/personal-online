@@ -7,34 +7,39 @@ import { useNavigation } from "@react-navigation/native";
 import { AppNavigatorRoutesProps } from "@routes/app.routes";
 import { useRoute } from "@react-navigation/native";
 import AuthContext from "src/context/authContext";
+// import {URL_API} from '@env'
+let URL_API = "http://localhost:3333"
 
 export function Home() {
   const route = useRoute();
-  const { userId } = useContext(AuthContext); // obtém o userId do contexto de autenticação
-  console.log(userId);
+  let idUserFromRoute = route.params as any; // acessa os parâmetros passados pelo homePersonal (se existir)
+
+  let { userId } = useContext(AuthContext); // obtém o userId do contexto de autenticação
   const [programs, setPrograms] = useState([]); // inicializa com um array vazio
   const navigation = useNavigation<AppNavigatorRoutesProps>();
+
+  if(idUserFromRoute){
+    userId = idUserFromRoute;
+  }
 
   function handleOpenProgram(item) {
     navigation.navigate("program", {
       name: item.name,
-      day: item.day,
-      workouts: item.workouts,
+      workoutsRoute: item.workouts,
     });
   }
 
   useEffect(() => {
     async function getProgram() {
-      try {
-        const response = await axios.get(`http://10.0.0.168:3333/users/${userId}`);
-        console.log("Dados da resposta da API:", response.data); 
-  
-       
-        const userPrograms = response.data.user?.programs || []; 
-        setPrograms(userPrograms);
-      } catch (error) {
-        console.error("Erro ao buscar programas:", error);
-      }
+      console.log('GetProgram()')
+        try {
+          const response = await axios.get(`${URL_API}/users/${userId}`);
+          let programs = response.data.user?.programs || []; 
+          setPrograms(programs);
+
+        } catch (error) {
+          console.error("Erro ao buscar programas:", error);
+        }
     }
   
     getProgram();
