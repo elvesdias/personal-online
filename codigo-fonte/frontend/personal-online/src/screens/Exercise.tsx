@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HStack, Heading, Icon, Text, VStack, Image, Box, ScrollView } from 'native-base';
 import { TouchableOpacity, StyleSheet, View } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 
@@ -11,30 +11,14 @@ import RepetitionsSvg from '@assets/repetitions.svg';
 import { Button } from '@components/Button';
 
 import CheckSvg from '../assets/check.svg';
-
-// export function Group() { 
-//     const navigation = useNavigation<AppNavigatorRoutesProps>();
-//     const route = useRoute();
-//     const group = route.params.data;
-//     console.log(group);
-// }
-
 export function Exercise() {
     const navigation = useNavigation<AppNavigatorRoutesProps>();
     const route = useRoute();
-    const exercise = route.params.data;
+    const exercise = route.params;
 
-    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        let timer;
-        if (isChecked) {
-            timer = setTimeout(() => {
-                setIsChecked(false);
-            }, 2000); // 2000 ms = 2 seconds
-        }
-        return () => clearTimeout(timer); // Cleanup the timer
-    }, [isChecked]);
+    }, []);
 
     function handleGoBack() {
         navigation.goBack();
@@ -51,13 +35,6 @@ export function Exercise() {
                     <Heading color="gray.100" fontSize="lg" fontFamily="heading" flexShrink={1}>
                         {exercise.name}
                     </Heading>
-
-                    <HStack alignItems="center">
-                        <BodySvg />
-                        <Text color="gray.200" ml={1} textTransform="capitalize">
-                           TREINO A
-                        </Text>
-                    </HStack>
                 </HStack>
             </VStack>
 
@@ -74,31 +51,29 @@ export function Exercise() {
                     />
 
                     <Box bg="blueGray.800" rounded="md" pb={4} px={4}>
-                        <HStack alignItems="center" justifyContent="space-around" mb={6} mt={5}>
+                        <HStack mt={5}>
+                            <Icon as={Ionicons} name='barbell-outline' size={8} color='blue.300'></Icon>
                             <Text color="gray.200" ml="2" fontSize="25">
-                                {exercise.series} 4 Séries
+                                {exercise.series} Séries
                             </Text>
                         </HStack>
 
                         <HStack>
-                            <RepetitionsSvg />
-                            <Text color="gray.200" ml="2" fontSize="25" marginLeft="10">
-                                {exercise.repetitions} 10 Repetições
+                            <Icon as={Ionicons} name='repeat-outline' size={8} color='blue.300'></Icon>
+                            <Text color="gray.200" ml="2" fontSize="25">
+                                {exercise.repetitions} Repetições
                             </Text>
                         </HStack>
 
-                        <HStack alignItems="center" justifyContent="space-around" mt={5}>
-                            <Button onPress={() => setIsChecked(true)} title="Marcar como realizado" />
+                        <HStack>
+                            <Icon as={Ionicons} name='alarm-outline' size={8} color='blue.300'></Icon>
+                            <Text color="gray.200" ml="2" fontSize="25">
+                                {exercise.restTime} {exercise.restTime === 1 ? 'Minuto' : 'Minutos'}
+                            </Text>
                         </HStack>
                     </Box>
                 </VStack>
             </ScrollView>
-
-            {isChecked && (
-                <View style={styles.overlay}>
-                    <CheckSvg width="58%" height="58%" />
-                </View>
-            )}
         </VStack>
     );
 }

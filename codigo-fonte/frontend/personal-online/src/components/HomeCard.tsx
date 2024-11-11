@@ -1,15 +1,40 @@
 import { Heading, HStack, VStack, Text, Icon } from "native-base";
+import { useContext } from "react";
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
-import { Entypo } from "@expo/vector-icons";
+import { Entypo, Ionicons } from "@expo/vector-icons";
+import AuthContext from "src/context/authContext";
 
 interface HomeCardProps extends TouchableOpacityProps {
   cardName: string; // Novo: Nome do programa para o Heading
   cardSub: number; // Novo: Texto sobre o número de treinos
   sufix: string; //sufixo para ser usado após a string de cardSub
-  padding: number
+  padding: number;
+  icons: object;
 }
 
-export function HomeCard({ cardName, cardSub, sufix, padding = 6, ...rest }: HomeCardProps) {
+
+
+export function HomeCard({ cardName, cardSub, sufix, padding = 4, icons, ...rest }: HomeCardProps) {
+  const { userType } = useContext(AuthContext);
+  function defaultIcons(){
+    return (
+    <>
+      { userType === 'admin' &&
+        <TouchableOpacity>
+          <Icon as={Ionicons} name="trash" color="red.400" mr={5} />
+        </TouchableOpacity>
+      }
+      <TouchableOpacity>
+        <Icon as={Entypo} name="chevron-thin-right" color="gray.300" />
+      </TouchableOpacity>
+    </>
+    )
+  }
+
+  if(!icons){
+    icons = defaultIcons();
+  }
+  
   return (
     <TouchableOpacity {...rest}>
       <HStack
@@ -32,8 +57,8 @@ export function HomeCard({ cardName, cardSub, sufix, padding = 6, ...rest }: Hom
             {cardSub} {sufix}
           </Text>
         </VStack>
-
-        <Icon as={Entypo} name="chevron-thin-right" color="gray.300" />
+        
+        {icons}
       </HStack>
     </TouchableOpacity>
   );

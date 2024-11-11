@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
-import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
-import axios from 'axios';
+import { useEffect, useState, useContext } from 'react';
+import { HStack, VStack, FlatList, Heading, Text, useNativeBase, Center } from 'native-base';
 import { HomeHeader } from '@components/HomeHeader';
-import { Group } from '@components/Group'
-import { ExerciseCard } from '@components/ExerciseCard';
 import { HomeCard } from '@components/HomeCard';
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
 import { useRoute } from '@react-navigation/native';
+import AuthContext from "src/context/authContext";
 import { URL_API } from '@env'
 
 export function Program() {
@@ -16,7 +14,7 @@ export function Program() {
     const [workout, setWorkout] = useState();
     const route = useRoute();
     const { name, day, workoutsRoute } = route.params as any; // acessa os parâmetros passados
-
+    const { userType } = useContext(AuthContext);
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
     function handleOpenWorkout(workout: any) {
@@ -44,7 +42,9 @@ export function Program() {
                         {day}
                     </Text>
                 </HStack>
-
+                    { userType === 'admin' && 
+                        <Center><Button title="Novo Treino" bgColor='white' textcolor='black'/></Center>
+                    }
                 <FlatList
                     data={workout}
                     // keyExtractor={item => item}
@@ -52,15 +52,17 @@ export function Program() {
                         <HomeCard
                             data={item}
                             cardName={item.name}
-                            cardSub={item.day}
+                            cardSub={item.exercises.length}
                             onPress={() => handleOpenWorkout(item)}
+                            sufix={item.exercises.length === 1 ? "Exercício" : "Exercícios"}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-        
-
+                { userType === 'admin' && 
+                    <Center><Button title="Salvar Programa" bgColor='white' textcolor='black'/></Center>
+                }
             </VStack>
         </VStack>
     );

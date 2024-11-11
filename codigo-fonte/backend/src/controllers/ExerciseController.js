@@ -32,6 +32,7 @@ const exerciseController = {
             const exercise = await ExerciseModel.find();
 
             res.json(exercise);
+
         } catch (error) {
             console.log(error);
         }

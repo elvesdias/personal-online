@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
-import { HStack, VStack, FlatList, Heading, Text } from "native-base";
+import { HStack, VStack, FlatList, Heading, Text, Center } from "native-base";
+import { Button } from "@components/Button";
 import axios from "axios";
 import { HomeHeader } from "@components/HomeHeader";
 import { HomeCard } from "@components/HomeCard";
@@ -14,7 +15,7 @@ export function Home() {
   const route = useRoute();
   let idUserFromRoute = route.params as any; // acessa os parâmetros passados pelo homePersonal (se existir)
 
-  let { userId } = useContext(AuthContext); // obtém o userId do contexto de autenticação
+  let { userId, userType } = useContext(AuthContext); // obtém o userId do contexto de autenticação
   const [programs, setPrograms] = useState([]); // inicializa com um array vazio
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
@@ -72,6 +73,9 @@ export function Home() {
           showsVerticalScrollIndicator={false}
           _contentContainerStyle={{ paddingBottom: 20 }}
         />
+        { userType === 'admin' &&
+          <Center><Button title="Cadastrar programa" bgColor='white' textcolor='black'/></Center>
+        }
       </VStack>
     </VStack>
   );

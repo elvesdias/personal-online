@@ -3,13 +3,18 @@ import { Button as ButtonNativeBase, Center, IButtonProps, Text } from 'native-b
 type Props = IButtonProps & {
     title: string;
     variant?: 'solid' | 'outline';
+    textcolor: string
 }
 
-export function Button({title, variant = 'solid', ...rest}: Props) {
+export function Button({title, variant = 'solid', textcolor, ...rest}: Props) {
     return(
         <ButtonNativeBase 
-        w={290}
+        alignItems="center"
+        p={6}
+        pr={4}
+        mb={3}
         h={14}
+        width='100%'
     
         bg={variant === "outline" ? "transparent" : "#053a72"}
         borderWidth={variant === "outline" ? 2 : 0}
@@ -21,7 +26,8 @@ export function Button({title, variant = 'solid', ...rest}: Props) {
         {...rest}
         >
             <Text 
-            color={variant === "outline" ? "#ffffff" : "#ffffff"}
+            margin={4}
+            color={textcolor ? textcolor : (variant === "outline" ? "#ffffff" : "#ffffff")}
             fontFamily="heading" 
             fontSize="sm"
             >

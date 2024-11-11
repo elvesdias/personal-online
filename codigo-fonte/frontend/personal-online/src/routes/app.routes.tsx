@@ -16,6 +16,7 @@ import { HomePersonal } from "@screens/HomePersonal";
 import { ClientRegistration } from "@screens/ClientRegistration";
 //import { HomeAluno } from "@screens/HomeAluno";
 import { Workout } from "@screens/Workout";
+import { WorkoutRegistration } from "@screens/WorkoutRegistration";
 import { Exercise } from "@screens/Exercise";
 import { History } from "@screens/History";
 import { Profile } from "@screens/Profile";
@@ -30,8 +31,9 @@ type AppRoutes = {
   exercise: undefined;
   history: undefined;
   profile: undefined;
-  workout: undefined
-  homeAluno: undefined
+  workout: undefined;
+  homeAluno: undefined;
+  workoutRegistration: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
@@ -43,17 +45,7 @@ export function AppRoutes() {
 
   const iconSize = sizes[7];
 
-  // const { userType } = useContext(AuthContext);
-
-
-
-  ///
-  //
-  //
-  //
-  const userType = 'admin'; // apagar essa linha, apenas para testes
-  //
-  //
+  const { userType } = useContext(AuthContext);
 
   return (
     <Navigator
@@ -137,6 +129,11 @@ export function AppRoutes() {
       <Screen
         name="ClientRegistration"
         component={Workout}
+      />
+
+      <Screen
+        name="workoutRegistration"
+        component={WorkoutRegistration}
       />
     </Navigator>
   );
