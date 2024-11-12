@@ -30,6 +30,13 @@ export function Home() {
     });
   }
 
+  function handleCreateProgram(){
+    const response = await axios.post(`${URL_API}/programs/register`, {
+      name: '',
+      
+    });
+  }
+
   useEffect(() => {
     async function getProgram() {
       console.log('GetProgram()')
@@ -74,7 +81,7 @@ export function Home() {
           _contentContainerStyle={{ paddingBottom: 20 }}
         />
         { userType === 'admin' &&
-          <Center><Button title="Cadastrar programa" bgColor='white' textcolor='black'/></Center>
+          <Center><Button title="Cadastrar programa" bgColor='white' textcolor='black' onPress={() => }/></Center>
         }
       </VStack>
     </VStack>
