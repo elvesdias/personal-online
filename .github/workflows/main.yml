@@ -26,8 +26,8 @@ jobs:
         uses: docker/build-push-action@v5.3.0
         with:
           context: ./codigo-fonte/frontend/personal-online
-          file: ./codigo-fonte/frontend/Dockerfile
+          file: ./codigo-fonte/frontend/personal-online/Dockerfile
           push: true
           tags: |
            elvesdias/frontend
-           elvesdias/backend:v${{ github.run_number }}
+           elvesdias/forntend:v${{ github.run_number }}
