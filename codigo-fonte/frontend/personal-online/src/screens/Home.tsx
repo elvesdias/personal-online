@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react"; 
 import { HStack, VStack, FlatList, Heading, Text, Center } from "native-base";
 import { Button } from "@components/Button";
 import axios from "axios";
@@ -13,14 +13,24 @@ let URL_API = "http://localhost:3333"
 
 export function Home() {
   const route = useRoute();
-  let idUserFromRoute = route.params as any; // acessa os parâmetros passados pelo homePersonal (se existir)
+  const idUserFromRoute = route.params as any; // acessa os parâmetros passados pelo homePersonal (se existir)
 
-  let { userId, userType } = useContext(AuthContext); // obtém o userId do contexto de autenticação
+  const { userId, userType } = useContext(AuthContext); // obtém o userId do contexto de autenticação
   const [programs, setPrograms] = useState([]); // inicializa com um array vazio
   const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-  if(idUserFromRoute){
-    userId = idUserFromRoute;
+  const currentUserId = idUserFromRoute || userId;
+
+  async function handleCreateProgram() {
+    try {
+      const response = await axios.post(`${URL_API}/programs/register`, {
+        name: '',
+      });
+      console.log("Programa criado:", response.data);
+      // Atualize a lista de programas ou notifique o usuário
+    } catch (error) {
+      console.error("Erro ao criar o programa:", error);
+    }
   }
 
   function handleOpenProgram(item) {
@@ -30,28 +40,20 @@ export function Home() {
     });
   }
 
-  function handleCreateProgram(){
-    const response = await axios.post(`${URL_API}/programs/register`, {
-      name: '',
-      
-    });
-  }
-
   useEffect(() => {
     async function getProgram() {
-      console.log('GetProgram()')
-        try {
-          const response = await axios.get(`${URL_API}/users/${userId}`);
-          let programs = response.data.user?.programs || []; 
-          setPrograms(programs);
-
-        } catch (error) {
-          console.error("Erro ao buscar programas:", error);
-        }
+      console.log("GetProgram()");
+      try {
+        const response = await axios.get(`${URL_API}/users/${currentUserId}`);
+        const programs = response.data.user?.programs || []; 
+        setPrograms(programs);
+      } catch (error) {
+        console.error("Erro ao buscar programas:", error);
+      }
     }
   
     getProgram();
-  }, [userId]);
+  }, [currentUserId]);
 
   return (
     <VStack flex={1} bg="gray.900">
@@ -68,7 +70,7 @@ export function Home() {
 
         <FlatList
           data={programs}
-          keyExtractor={(item) => item._id} // garante uma chave única para cada programa
+          keyExtractor={(item) => item._id || String(Math.random())}
           renderItem={({ item }) => (
             <HomeCard
               onPress={() => handleOpenProgram(item)}
@@ -80,9 +82,16 @@ export function Home() {
           showsVerticalScrollIndicator={false}
           _contentContainerStyle={{ paddingBottom: 20 }}
         />
-        { userType === 'admin' &&
-          <Center><Button title="Cadastrar programa" bgColor='white' textcolor='black' onPress={() => }/></Center>
-        }
+        {userType === "admin" && (
+          <Center>
+            <Button 
+              title="Cadastrar programa" 
+              bgColor="white" 
+              textcolor="black" 
+              onPress={handleCreateProgram} 
+            />
+          </Center>
+        )}
       </VStack>
     </VStack>
   );

@@ -1,4 +1,6 @@
 import { useContext, useState } from 'react';
+import {URL_API} from '@env' 
+console.log(URL_API);
 import { userlogin } from '../services/authServices';
 import { useNavigation } from "@react-navigation/native";
 import { VStack, Image, Text, Center, Heading, ScrollView } from "native-base";
@@ -7,7 +9,7 @@ import AuthContext from '../context/authContext'; // Corrigi o caminho do AuthCo
 
 import Logo from "@assets/logo.png";
 import BackgroundImg from "@assets/background.png";
-import {URL_API} from '@env'
+
 
 import { Input } from "@components/Input";
 import { Button } from "@components/Button";

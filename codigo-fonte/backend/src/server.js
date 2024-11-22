@@ -1,16 +1,16 @@
 const express = require("express");
 const cors = require("cors");
-const UserRoutes = require('./routes/UserRoutes')
-const ExerciseRoutes = require('./routes/ExerciseRoutes')
-const ProgramRoutes = require('./routes/ProgramRoutes')
-const WorkoutRoutes = require('./routes/WorkoutRoutes')
+const UserRoutes = require('./routes/UserRoutes');
+const ExerciseRoutes = require('./routes/ExerciseRoutes');
+const ProgramRoutes = require('./routes/ProgramRoutes');
+const WorkoutRoutes = require('./routes/WorkoutRoutes');
 
 const app = express();
 
 // Config JSON response
 app.use(express.json());
 
-//Solve CORS
+// Solve CORS
 // app.use(cors({ credentials: true, origin: "http://localhost:5173" })); (permitir outras origens)
 
 // Public folder for images
@@ -26,6 +26,14 @@ app.use((req, res, next) => {
   next();
 });
 
+// Healthcheck endpoint
+app.get('/healthcheck', (req, res) => {
+  res.status(200).json({
+    status: "OK",
+    message: "Backend is running",
+    timestamp: new Date().toISOString(),
+  });
+});
 
 // Routes
 app.use('/users', UserRoutes);
