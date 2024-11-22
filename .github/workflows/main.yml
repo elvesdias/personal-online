@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "codigo-fonte/frontend/personal-online/**" 
+  workflow_dispatch:
  
 jobs:
   CI:
