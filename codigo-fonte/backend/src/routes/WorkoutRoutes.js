@@ -7,11 +7,15 @@ router
   .post((req, res) => WorkoutController.create(req, res));
 
 router
-  .route("/workout")
-  .delete((req, res) => WorkoutController.delete(req, res));
+  .route("/delete_workout")
+  .put((req, res) => WorkoutController.delete(req, res));
 
 router
   .route("/workout")
   .put((req, res) => WorkoutController.update(req, res));
+
+router
+  .route("/workout/addexercise")
+  .put((req, res) => WorkoutController.addExercise(req, res))
 
 module.exports = router;

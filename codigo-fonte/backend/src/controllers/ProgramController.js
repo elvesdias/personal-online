@@ -32,8 +32,8 @@ const programController = {
       const updated = await User.findByIdAndUpdate(user_id, {
           $push: { programs: program_obj },
       }, { new: true });
-
-      res.status(201).json({ message: "Programa criado" });
+      let new_program = updated.programs.at(-1)
+      res.status(201).json(new_program);
 
     } catch (error) {
         console.log(error);
@@ -105,6 +105,34 @@ const programController = {
         console.log(error);
     }
   },
+
+
+getProgram: async (req, res) => {
+  try {
+    const { user_id, program_id } = req.params;
+
+    // Busca o usuário e filtra pelo programa com o ID fornecido
+    const user = await User.findById(user_id, {
+      programs: { $elemMatch: { id: program_id } }
+    }).populate({
+      path: "programs.workouts.exercises",
+      model: "Exercise",
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
+    }
+
+    if (!user.programs || user.programs.length === 0) {
+      return res.status(404).json({ message: "Programa não encontrado" });
+    }
+
+    res.status(200).json({ program: user.programs[0] });
+  } catch (error) {
+    console.error("Erro ao buscar o programa:", error);
+    res.status(500).json({ message: "Erro ao buscar o programa", error });
+  }
+}
 
 };
 

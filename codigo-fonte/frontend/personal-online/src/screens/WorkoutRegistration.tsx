@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { TouchableOpacity, View } from "react-native";
 import { VStack, HStack, Text, Icon, ScrollView, Input, Box, FlatList, Center, Heading } from "native-base";
 import { Feather } from "@expo/vector-icons";
@@ -15,11 +15,16 @@ import RepetitionsSvg from '@assets/repetitions.svg';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import { color } from "native-base/lib/typescript/theme/styled-system";
 import { getExercicies } from "@services/ExercisesServices";
+import AuthContext from "src/context/authContext";
 import { URL_API } from '@env'
 
 
 export function WorkoutRegistration() {
+  const route = useRoute();
+  const { program_id, workout_id, exercises_id, name, onAddExercise} = route.params as any
+  const { userId } = useContext(AuthContext);
   const [search, setSearch] = useState("");
+  const [exercises_cache, setExercisesCache] = useState({});
   const [exercises, setExercises] = useState([]);
   const [exercises_filtered, setExercisesFiltered] = useState();
 
@@ -34,9 +39,9 @@ export function WorkoutRegistration() {
   }
 
   useEffect(() => {
+      setExercisesCache(exercises_id);
       const getExercises = async () => {
         try {
-          console.log('useeffect workoutregistration')
           const response = await axios.get(`${URL_API}/exercises`);
           let exercises = response.data || []; 
 
@@ -48,11 +53,38 @@ export function WorkoutRegistration() {
         }
       }
       getExercises();
-  }, [])
+  }, [workout_id])
+
+  const addExerciseCache = (id) => {
+    setExercisesCache((exercises_cache) => ({
+      ...exercises_cache,
+      [id]: true,
+    }));
+    
+  };
+
+  async function handleAddExercises(item) {
+    try {
+      const response = await axios.put(`${URL_API}/workout/addexercise`, {
+        exercise: [
+            {"_id": item._id}
+        ],
+      
+        workout_id: workout_id,
+        program_id: program_id,
+        user_id: userId
+      });
+      addExerciseCache(item._id)
+      onAddExercise(item)
+      console.log('exercicio adicionado')
+
+    } catch(error){
+        console.error("Erro ao adicionar exercicio: ", error);
+    }
+  }
 
   return (
     <VStack flex={1} bg="#121214">
-      <ScreenHeader title="TREINO A" />
       
       <HStack p={4} pt={6} alignItems="center">
         <Input
@@ -85,9 +117,14 @@ export function WorkoutRegistration() {
               cardName={item.name}
               cardSub={`${item.series} ser. / ${item.repetitions} rep. / ${item.restTime} min.`}
               icons={
-                <TouchableOpacity>
-                  <Icon as={Feather} name="plus-circle" size="md" color="gray.100" />
-                </TouchableOpacity>
+                 exercises_cache[item._id] ? 
+                   <TouchableOpacity>
+                      <Icon as={Feather} name="check" size="md" color="green.100"/>
+                    </TouchableOpacity>
+                    : <TouchableOpacity>
+                        <Icon as={Feather} name="plus-circle" size="md" color="gray.100" onPress={() => {handleAddExercises(item)}}/>
+                      </TouchableOpacity>
+                
               }
             />
           )}

@@ -15,8 +15,8 @@ router
 //   .get((req, res) => ProgramController.get(req, res));
 
 router
-  .route("/programs")
-  .delete((req, res) => ProgramController.delete(req, res));
+  .route("/delete_program")
+  .put((req, res) => ProgramController.delete(req, res));
 
 router
   .route("/programs")

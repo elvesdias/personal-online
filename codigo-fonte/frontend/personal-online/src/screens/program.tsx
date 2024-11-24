@@ -1,7 +1,8 @@
 import { useEffect, useState, useContext } from 'react';
-import { HStack, VStack, FlatList, Heading, Text, useNativeBase, Center } from 'native-base';
+import { HStack, VStack, FlatList, Heading, Input, Text, useNativeBase, Center } from 'native-base';
 import { HomeHeader } from '@components/HomeHeader';
 import { HomeCard } from '@components/HomeCard';
+import axios from "axios";
 import { useNavigation } from '@react-navigation/native';
 import { AppNavigatorRoutesProps } from '@routes/app.routes';
 import { Button } from "@components/Button";
@@ -11,21 +12,114 @@ import { URL_API } from '@env'
 
 export function Program() {
 
-    const [workout, setWorkout] = useState();
+    const [workout, setWorkout] = useState([]);
     const route = useRoute();
-    const { name, day, workoutsRoute } = route.params as any; // acessa os parâmetros passados
-    const { userType } = useContext(AuthContext);
+    let { name, _id, workoutsRoute, onUpdateProgram } = route.params as any; // acessa os parâmetros passados
+    const { userType, userId } = useContext(AuthContext);
     const navigation = useNavigation<AppNavigatorRoutesProps>();
+    const [programName, setProgramName] = useState(name);
 
+    // clique do card de um workout
     function handleOpenWorkout(workout: any) {
         navigation.navigate('workout', {
             name: workout.name,
-            day: workout.day,
-            exercises: workout.exercises
+            exercisesRoute: workout.exercises,
+            workout_id: workout._id,
+            program_id: _id,
+            onUpdateWorkout: updateWorkout
         });
     }
+
+    /**
+     * callback para atualizar workout com novos numeros de exercicios
+     * @param updatedWorkout
+     */
+    function updateWorkout(updatedWorkout: object) {
+        setWorkout(prevWorkouts => {
+            const updatedWorkouts = prevWorkouts.map(w =>
+                w._id === updatedWorkout._id ? updatedWorkout : w
+            );
+            onUpdateProgram({
+                _id: _id,
+                name: programName,
+                workouts: updatedWorkouts
+            });
+            return updatedWorkouts;
+        });
+        
+    }
+
+    // clique do botao Novo Treino
+    async function handleNewWorkout(){
+        try {
+            const response = await axios.post(`${URL_API}/workout/register`, {
+                workout: {
+                    name: ""
+                },
+                program_id: _id,
+                user_id: userId
+            });
+            setWorkout([...workout, response.data]);
+            onUpdateProgram({
+                _id: _id,
+                name: programName,
+                workouts: [...workout, response.data]
+            });
+      
+        } catch(error){
+            console.error("Erro ao criar programas: ", error);
+        }
+    }
+
+    // clique do botao salvar programa
+    async function handleSaveProgram(){
+        try {
+            const response = await axios.put(`${URL_API}/programs`, {
+                name: programName,
+                program_id: _id,
+                user_id: userId
+            });
+            onUpdateProgram({
+                _id: _id,
+                name: programName,
+                workouts: workout
+            });
+            navigation.navigate("home");
+      
+        } catch(error){
+            console.error("Erro ao editar programa: ", error);
+        }
+    }
+
+    /**
+     * clique no icone de lixeira de programa
+     * @param workout_id 
+     */
+    async function handleDeleteWorkout(workout_id) {
+        try {
+            const response = await axios.put(`${URL_API}/delete_workout`, {
+                workout_id: workout_id,
+                program_id: _id,
+                user_id: userId
+            });
+
+            setWorkout((prevWorkouts) => 
+                prevWorkouts.filter((workout) => workout._id !== workout_id)
+            );
+            onUpdateProgram({
+                _id: _id,
+                name: programName,
+                workouts: workout.filter((workout) => workout._id !== workout_id)
+            });
+      
+        } catch(error){
+            console.error("Erro ao editar programa: ", error);
+        }
+    }
+
     useEffect(() => {
         setWorkout(workoutsRoute)
+        setProgramName(name)
     }, [workoutsRoute])
 
     return (
@@ -34,20 +128,35 @@ export function Program() {
            
             <VStack flex={1} px={8}>
                 <HStack justifyContent="space-between" mb={5}>
-                    <Heading color="gray.200" fontSize="md" fontFamily="heading">
-                        {name}
-                    </Heading>
+                    {   userType === 'admin' ?
+                        <Input
+                            placeholder="Nome do programa"
+                            value={programName}
+                            onChangeText={setProgramName}
+                            bg="gray.700"
+                            borderColor="gray.800"
+                            placeholderTextColor="gray.300"
+                            color="gray.200"
+                            h={12}
+                            fontSize={19}
+                            _focus={{ 
+                                bg: "gray.700",
+                                borderColor: "gray.500"
+                            }}
+                        />
 
-                    <Text color="gray.200" fontSize="sm">
-                        {day}
-                    </Text>
+                        : <Heading color="gray.200" fontSize="md" fontFamily="heading">
+                            {programName}
+                        </Heading>
+                    }
                 </HStack>
+
+
                     { userType === 'admin' && 
-                        <Center><Button title="Novo Treino" bgColor='white' textcolor='black'/></Center>
+                        <Center><Button title="Novo Treino" bgColor='white' textcolor='black' onPress={() => {handleNewWorkout()}}/></Center>
                     }
                 <FlatList
                     data={workout}
-                    // keyExtractor={item => item}
                     renderItem={({ item }) => (
                         <HomeCard
                             data={item}
@@ -55,13 +164,14 @@ export function Program() {
                             cardSub={item.exercises.length}
                             onPress={() => handleOpenWorkout(item)}
                             sufix={item.exercises.length === 1 ? "Exercício" : "Exercícios"}
+                            callbackPressTrash={() => handleDeleteWorkout(item._id)}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
                 { userType === 'admin' && 
-                    <Center><Button title="Salvar Programa" bgColor='white' textcolor='black'/></Center>
+                    <Center><Button title="Salvar Programa" bgColor='white' textcolor='black' onPress={() => {handleSaveProgram()} } /></Center>
                 }
             </VStack>
         </VStack>

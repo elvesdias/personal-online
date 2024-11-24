@@ -10,18 +10,19 @@ interface HomeCardProps extends TouchableOpacityProps {
   sufix: string; //sufixo para ser usado após a string de cardSub
   padding: number;
   icons: object;
+  callbackPressTrash: Function
 }
 
 
 
-export function HomeCard({ cardName, cardSub, sufix, padding = 4, icons, ...rest }: HomeCardProps) {
+export function HomeCard({ cardName, cardSub, sufix, padding = 4, icons, callbackPressTrash = () => {},...rest}: HomeCardProps) {
   const { userType } = useContext(AuthContext);
   function defaultIcons(){
     return (
     <>
       { userType === 'admin' &&
         <TouchableOpacity>
-          <Icon as={Ionicons} name="trash" color="red.400" mr={5} />
+          <Icon as={Ionicons} name="trash" color="red.400" mr={5} onPress={() => callbackPressTrash()}/>
         </TouchableOpacity>
       }
       <TouchableOpacity>

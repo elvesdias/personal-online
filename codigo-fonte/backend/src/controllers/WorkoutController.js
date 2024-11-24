@@ -40,7 +40,11 @@ const WorkoutController = {
         }
     );
 
-      res.status(201).json({ message: "Treino criado" });
+      const insertedWorkout = updated.programs
+        .find(program => program._id.toString() === program_id.toString())
+        ?.workouts.at(-1);
+
+      res.status(201).json(insertedWorkout);
 
     } catch (error) {
         console.log(error);
@@ -77,8 +81,12 @@ const WorkoutController = {
          }
       );
 
-      res.status(201).json({ message: "Treino deletado" });
+      const updatedProgram = updated.programs
+        .find(program => program._id.toString() === program_id.toString())
 
+        console.log('excluiu workout')
+      res.status(201).json(updatedProgram);
+      
     } catch (error) {
         console.log(error);
     }
@@ -108,6 +116,7 @@ const WorkoutController = {
       let user_id = req.body.user_id
         , program_id = req.body.program_id
       ;
+      console.log('entrou')
     //   let workout_id_obj = new mongoose.Types.ObjectId();
     
       let workout = {
@@ -131,12 +140,75 @@ const WorkoutController = {
         }
       )
 
-      res.status(201).json({ message: "Treino editado" });
+      res.status(201).json(updated);
 
     } catch (error) {
         console.log(error);
     }
   },
+
+  addExercise: async (req, res) => {
+    try {
+      let user_id = req.body.user_id
+        , program_id = req.body.program_id
+      ;
+
+
+      const updated = await User.findByIdAndUpdate(user_id,
+        {
+          $addToSet: {
+              "programs.$[program].workouts.$[workout].exercises": req.body.exercise // Atualiza o programa correspondente
+          }
+        },
+        {
+            new: true, // Retorna o documento atualizado
+            arrayFilters: [
+                { "program._id": program_id },
+                { "workout._id": req.body.workout_id }
+            ] // Filtra o programa a ser atualizado
+        }
+      )
+
+      res.status(201).json(updated);
+
+    } catch (error) {
+        console.log(error);
+    }
+  },
+
+  
+  getWorkout: async (req, res) => {
+    try {
+      const { user_id, program_id, workout_id } = req.params;
+
+      // Busca o usuário e filtra o programa e treino específicos
+      const user = await User.findById(user_id, {
+        programs: { $elemMatch: { id: program_id } }
+      }).populate({
+        path: 'programs.workouts.exercises', // Caminho para popular
+        model: 'Exercise' // Modelo referenciado
+      });
+
+      if (!user) {
+        return res.status(404).json({ message: "Usuário não encontrado" });
+      }
+
+      const program = user.programs[0];
+      if (!program) {
+        return res.status(404).json({ message: "Programa não encontrado" });
+      }
+
+      const workout = program.workouts.find(w => w.id.toString() === workout_id);
+      if (!workout) {
+        return res.status(404).json({ message: "Treino não encontrado" });
+      }
+
+      res.status(200).json({ workout });
+    } catch (error) {
+      console.error("Erro ao buscar o treino:", error);
+      res.status(500).json({ message: "Erro ao buscar o treino", error });
+    }
+  }
 
 };
 
