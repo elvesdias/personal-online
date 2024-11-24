@@ -35,8 +35,8 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-05| Permitir que o administrador realize login através de seu e-mail e senha. | ALTA |
 |RF-06| Permitir que o usuário aluno realize login através de seu e-mail e senha. | ALTA |
 |RF-07| Permitir que o administrador faça o cadastro dos treinos. | ALTA |
-|RF-08| Permitir o administrador associar um treino a um aluno. | ALTA |
-|RF-09| Permitir o usuário aluno e administrador a visualização dos treinos cadastrados. | MÉDIA |
+|RF-08| Permitir ao usuário aluno a visualização dos treinos cadastrados. | ALTA |
+|RF-09| Permitir ao usuário administrador a visualização dos treinos cadastrados. | ALTA |
 |RF-10| Permitir que o usuário visualize a execução do exercício. | MÉDIA |
 |RF-11| Permitir que o administrador altere ou exclua um treino. | MÉDIA |
 |RF-12| Permitir o usuário aluno a marcar os treinos como realizados. | BAIXA |
