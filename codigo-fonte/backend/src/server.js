@@ -9,6 +9,7 @@ const app = express();
 
 // Config JSON response
 app.use(express.json());
+app.use(cors())
 
 //Solve CORS
 // app.use(
