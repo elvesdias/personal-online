@@ -3,7 +3,7 @@ import { API_URL } from '@env';
 
 export async function userupdate(id, name, email, phone, password, confirmPassword, token) {
     try{
-        const response = await axios.patch("http://192.168.0.64:3333/exercises",
+        const response = await axios.patch("http://100.27.33.200:3333/exercises",
             {
                 name: name,
                 email: email,
