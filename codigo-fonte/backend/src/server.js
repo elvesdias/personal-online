@@ -50,12 +50,10 @@
 //   console.log(`Server is running on Port ${PORT}`);
 // });
 
+const https = require('https');
+const fs = require('fs');
 const express = require("express");
 const cors = require("cors");
-const UserRoutes = require('./routes/UserRoutes');
-const ExerciseRoutes = require('./routes/ExerciseRoutes');
-const ProgramRoutes = require('./routes/ProgramRoutes');
-const WorkoutRoutes = require('./routes/WorkoutRoutes');
 
 const app = express();
 
@@ -64,30 +62,23 @@ app.use(express.json());
 
 // Solve CORS
 app.use(cors({
-  origin: "http://100.27.33.200:8081", // Substitua pelo IP e porta do frontend
+  origin: "https://seu-frontend-dominio.com", // Use um domínio seguro
   methods: ["GET", "POST", "PUT", "DELETE"],
 }));
 
-// Public folder for images
-app.use(express.static("public"));
+// Certificados SSL
+const options = {
+  key: fs.readFileSync('/caminho/para/privkey.pem'),
+  cert: fs.readFileSync('/caminho/para/fullchain.pem'),
+};
 
-// Healthcheck endpoint
+// Rotas e Configurações
 app.get('/healthcheck', (req, res) => {
-  res.status(200).json({
-    status: "OK",
-    message: "Backend is running",
-    timestamp: new Date().toISOString(),
-  });
+  res.status(200).json({ status: "OK" });
 });
 
-// Routes
-app.use('/users', UserRoutes);
-app.use('/exercises', ExerciseRoutes);
-app.use('/programs', ProgramRoutes);
-app.use('/workouts', WorkoutRoutes);
-
-const PORT = 3333;
-app.listen(PORT, '100.27.33.200', function () {
-  console.log(`Server is running on http://100.27.33.200:${PORT}`);
+// Porta HTTPS
+const PORT = 443; // HTTPS usa a porta 443 por padrão
+https.createServer(options, app).listen(PORT, () => {
+  console.log(`Server running securely on https://100.27.33.200:${PORT}`);
 });
-
