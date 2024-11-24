@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {URL_API} from '@env'
-
+import { API_URL } from '@env';
 //import { useNavigation } from '@react-navigation/native';
 //const navigation = useNavigation()
 
@@ -17,7 +16,7 @@ import {URL_API} from '@env'
 
 
 export function userRegister(type, name, email, phone, password, confirmPassword) {
-    return axios.post(`${URL_API}/users/register`, {
+    return axios.post("http://100.27.33.200:3333/users/register", {
         type: type,
         name: name,
         email: email,
@@ -28,9 +27,8 @@ export function userRegister(type, name, email, phone, password, confirmPassword
 }
 
 export async function userlogin(email, password) {
-    return await axios.post(`${URL_API}/users/login`, {
+    return await axios.post("http://100.27.33.200:3333/users/login", {
         email: email,
         password: password,
     })
-
 }
