@@ -39,7 +39,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-09| Permitir ao usuário administrador a visualização dos treinos cadastrados. | ALTA |
 |RF-10| Permitir que o usuário visualize a execução do exercício. | MÉDIA |
 |RF-11| Permitir que o administrador altere ou exclua um treino. | MÉDIA |
-|RF-12| Permitir o usuário aluno a marcar os treinos como realizados. | BAIXA |
+|RF-12| Permitir o usuário aluno marcar os treinos como realizados. | BAIXA |
 |RF-13| Permitir que o treino marcado como realizado seja registrado no histórico do aluno. | BAIXA |
 |RF-14| Permitir que o usuário acesse o histórico de suas sessões de treino anteriores. | BAIXA |
 |RF-15| Permitir que o administrador acesse o histórico de treinos de seus alunos. | BAIXA |
