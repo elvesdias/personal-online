@@ -9,6 +9,8 @@ const AuthContext = createContext({
     setUserType: () => { },
     refresh: "aluno",
     setRefresh: () => { },
+    userToken: "", 
+    setUserToken: () => { },
 })
 
 export const AuthProvider = ({ children }) => {
@@ -17,6 +19,7 @@ export const AuthProvider = ({ children }) => {
     const [userId, setUserId] = useState(false)
     const [userType, setUserType] = useState(false)
     const [refresh, setRefresh] = useState(false)
+    const [userToken, setUserToken] = useState("")
 
     const authObject = {
         signed: signed,
@@ -27,7 +30,9 @@ export const AuthProvider = ({ children }) => {
         userType: 'admin',
         setUserType: setUserType,
         refresh: '',
-        setRefresh: setRefresh
+        setRefresh: setRefresh,
+        userToken: userToken, 
+        setUserToken: setUserToken,
     }
 
     return (
