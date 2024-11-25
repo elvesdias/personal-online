@@ -363,12 +363,6 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
  </p>
 
 <p align="center">
-      
- <img width="1000" height="300" alt="RF-06 02" src="https://github.com/user-attachments/assets/24016a63-ab5d-49b6-82c3-3bb35ddb158c">  
-
-</p>
-
-<p align="center">
   
   <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/RF%2011117.png" width="350">
 
@@ -376,7 +370,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 <p align="center">
       
-<img width="1000" height="300" alt="RF-05e" src="https://github.com/user-attachments/assets/8e7c8962-419d-4899-83e7-efb9a6cb912f">
+<img width="1000" height="300" alt="RF-06 03" src="https://github.com/user-attachments/assets/9f63ec87-d354-42e1-b3d3-36393691e03c">
 
 </p>
 
