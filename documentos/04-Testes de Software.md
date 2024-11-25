@@ -411,6 +411,21 @@ https://github.com/user-attachments/assets/21fa18a3-8117-44dd-bee5-f0568be937cd
 
 </p>
 
+## RF-08
+
+<p align="center">
+
+<img width="1000" height="300" alt="RF-08E" src="https://github.com/user-attachments/assets/26ed26d6-4f86-4bc9-8ce3-2ef37e20c06c">
+
+</p>
+
+<p align="center">
+
+https://github.com/user-attachments/assets/dbf05e92-132d-4402-a428-b40f69255d13
+
+</p>
+
+
 ## RF-16
 
 <p align="center">
