@@ -327,7 +327,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
  <p align="center">
    
- ![Login](https://github.com/user-attachments/assets/41a1ed87-6351-419a-94c2-5db32f26bcab)
+ <img src="https://github.com/user-attachments/assets/41a1ed87-6351-419a-94c2-5db32f26bcab.jpeg" width="350">
   
 </p>
 
