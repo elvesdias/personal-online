@@ -325,6 +325,19 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
  
  </p>
 
+ <p align="center">
+   
+ ![Login](https://github.com/user-attachments/assets/41a1ed87-6351-419a-94c2-5db32f26bcab)
+  
+</p>
+
+
+ <p align="center">
+   
+  <img src="https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2024-2-e5-proj-empext-t4-pmv-ads-2024-2-e5-personalonline/blob/main/documentos/img/EVIDENCIA%20TELA.jpeg" width="350">
+  
+</p>
+
 ## RF-05  
 
 <p align="center">
