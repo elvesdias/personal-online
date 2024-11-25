@@ -229,6 +229,12 @@ __Erro:__ Tem o objetivo de verificar se o sistema trata erros de maneira corret
 
 <p align="center">
   
+  <img width="1000" height="300" alt="RF-08G" src="https://github.com/user-attachments/assets/3d6de7f1-b984-4fb5-aa5c-4badb89f43c7">
+
+</p>
+
+<p align="center">
+  
   <img width="1000" height="300" alt="RF16-Geral" src="https://github.com/user-attachments/assets/06887535-f6c9-460d-b532-e51281f4c601">
 
 </p>
