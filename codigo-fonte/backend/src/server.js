@@ -47,9 +47,10 @@ app.use('/', ProgramRoutes);
 app.use('/', WorkoutRoutes);
 
 const PORT = 3333;
-app.listen(PORT, '100.27.33.200', function () {
+app.listen(PORT, '0.0.0.0', function () {
   console.log(`Server is running on Port ${PORT}`);
 });
+
 
 // const https = require('https');
 // const fs = require('fs');
