@@ -355,6 +355,12 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 </p>
 
+<p align="center">
+
+![WhatsApp Image 2024-11-24 at 23 22 04](https://github.com/user-attachments/assets/f01ac2e2-ef1c-43f2-81e9-364a567e4634)
+
+</p>
+
 
   <p align="center">
   
