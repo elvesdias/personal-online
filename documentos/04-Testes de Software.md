@@ -364,7 +364,7 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 <p align="center">
       
- <img width="1000" height="300" alt="RF-05u" src="https://github.com/user-attachments/assets/ac52426a-1a91-4bd2-b8ce-0e33df8e634b">  
+ <img width="1000" height="300" alt="RF-06 02" src="https://github.com/user-attachments/assets/24016a63-ab5d-49b6-82c3-3bb35ddb158c">  
 
 </p>
 
