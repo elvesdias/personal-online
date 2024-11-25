@@ -391,6 +391,20 @@ Abaixo estão as evidências dos testes propostos no Plano de Testes, os registr
 
 </p>
 
+## RF-07
+
+<p align="center">
+      
+<img width="1000" height="300" alt="RF-07E" src="https://github.com/user-attachments/assets/3d439948-306e-491c-9c42-7a9c0b22e4f0">
+
+</p>
+
+<p align="center">
+
+https://github.com/user-attachments/assets/21fa18a3-8117-44dd-bee5-f0568be937cd
+
+</p>
+
 ## RF-16
 
 <p align="center">
