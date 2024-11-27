@@ -39,13 +39,13 @@ export function getUserById(id) {
 
 export async function getUserHistory(id,token) {
     
-    const result = await axios.get(`http://localhost:3333/users/${id}/historico`,{
+    const result = await axios.get(`http://100.27.33.200/users/${id}/historico`,{
         headers: {
             "Authorization": `Bearer ${token}`
         }
     })
     const historys = result.data.historicos
-    const user = await axios.get(`${URL_API}/users/${id}`)
+    const user = await axios.get("http://100.27.33.200}/users/${id})"
     const programs = user.data.user.programs
     return [historys, programs]
 }
