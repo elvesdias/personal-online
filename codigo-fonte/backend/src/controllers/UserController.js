@@ -23,9 +23,9 @@ module.exports = class UserController {
       programs,
     } = req.body;
 
-    if (!program) {
-      program = [];
-    }
+    // if (!program) {
+    //   program = [];
+    // }
 
     // Validations
     if (!type || !name || !email || !phone || !password || !confirmPassword) {
