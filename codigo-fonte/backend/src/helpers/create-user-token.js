@@ -9,6 +9,7 @@ const createUserToken = async (user, req, res) => {
     },
     "secret"
   );
+  console.log(user.type)
   // Return Token
   res
     .status(200)

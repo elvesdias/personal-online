@@ -7,13 +7,15 @@
     "start": "nodemon ./src/server.js"
   },
   "keywords": [],
-  "author": "GymGo - Eixo 4 - PUC Minas",
+  "author": "personal-online - Eixo 5 - PUC Minas",
   "license": "ISC",
   "dependencies": {
+    "api-nodejs": "file:",
     "axios": "^1.7.7",
     "bcrypt": "^5.1.1",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "date-fns-tz": "^3.2.0",
     "dotenv": "^16.4.5",
     "events": "^3.3.0",
     "express": "^4.19.2",

@@ -8,17 +8,17 @@ export function Input({ errorMessage = null, isInvalid, ...rest }: Props ) {
     const invalid = !!errorMessage || isInvalid;
 
     return (
-      <FormControl isInvalid={invalid} mb={4} >
+      <FormControl isInvalid={invalid} mb={2} >
         <NativeBaseInput
         bg="gray.700"
         h={14}
         px={4}
         borderWidth={0}
         fontSize="md"
-        color="white"
+        color="#ffffff"
         fontFamily="body"
-        marginLeft={5}
-        marginRight={5}
+        marginLeft={0}
+        marginRight={1}
         placeholderTextColor="#ffffff"
         isInvalid={invalid}
         _invalid={{

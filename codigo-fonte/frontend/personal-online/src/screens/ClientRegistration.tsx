@@ -20,15 +20,14 @@ import { userRegister } from "../services/authServices";
 const PHOTO_SIZE = 33;
 
 const validationSchema = Yup.object().shape({
-    nome: Yup.string().required('Nome é obrigatório'),
+    name: Yup.string().required('Nome é obrigatório'),
     email: Yup.string().email('E-mail inválido').required('E-mail é obrigatório'),
-    telefone: Yup.string().matches(
+    phone: Yup.string().matches(
         /^\(\d{2}\)\s\d{4,5}-\d{4}$/,
         'Número de telefone inválido'
     ).required('Telefone é obrigatório'),
-    senhaAntiga: Yup.string().min(6, 'A senha deve ter pelo menos 6 caracteres'),
-    novaSenha: Yup.string().min(6, 'A nova senha deve ter pelo menos 6 caracteres'),
-    confirmeNovaSenha: Yup.string()
+    password: Yup.string().min(6, 'A nova senha deve ter pelo menos 6 caracteres'),
+    password_confirm: Yup.string()
         .oneOf([Yup.ref('novaSenha'), ''], 'As senhas não coincidem')
         .min(6, 'A confirmação da senha deve ter pelo menos 6 caracteres'),
 });
@@ -41,7 +40,7 @@ export function ClientRegistration() {
             initialValues={{ name: '', email: '', phone: '', password: '', password_confirm: '' }}
             validationSchema={validationSchema}
             onSubmit={(values) => {
-                // console.log(values);
+                console.log(values);
                 // userRegister("aluno", values.name, values.email, values.phone, values.password, values.password_confirm)
                 //     .then((res) => {
                 //         console.log("Deu certo")

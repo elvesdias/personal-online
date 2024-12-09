@@ -1,89 +1,124 @@
-import { useEffect, useState } from 'react';
-import { HStack, VStack, FlatList, Heading, Text, useNativeBase } from 'native-base';
-import axios from 'axios';
-import { HomeHeader } from '@components/HomeHeader';
-import { Group } from '@components/Group'
-import { ExerciseCard } from '@components/ExerciseCard';
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigatorRoutesProps } from '@routes/app.routes';
-import { Button } from "@components/Button";
-
-import { getExercicies } from '@services/ExercisesServices';
+import { useEffect, useState, useContext } from "react";
+import {
+    HStack,
+    VStack,
+    FlatList,
+    Heading,
+    Text,
+    useNativeBase,
+    Center,
+    Box,
+    Input,
+    Icon,
+} from "native-base";
+import axios from "axios";
+import { HomeHeader } from "@components/HomeHeader";
+import { Group } from "@components/Group";
+import { ExerciseCard } from "@components/ExerciseCard";
+import { HomeCard } from "@components/HomeCard";
+import { useNavigation } from "@react-navigation/native";
+import { AppNavigatorRoutesProps } from "@routes/app.routes";
+import { ButtonApp } from "@components/ButtonApp";
+import { Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
+import AuthContext from "src/context/authContext";
+import { URL_API } from '@env'
 
 export function HomePersonal() {
-    const [groups, setGroups] = useState(['TREINO A', 'TREINO B', 'TREINO C', 'TREINO D']);
-    const [exercises, setExercises] = useState(['Puxada Frontal', 'Remada Curvada', 'Remada Unilateral', 'Rosca Direta', 'Rosca Scott c/ Barra W']);
-    const [groupSelected, setGroupSelected] = useState('TREINO A');
+    const [search, setSearch] = useState("");
+    const [users, setUsers] = useState([]); // fixo
+    const [users_filtered, setUsersFilter] = useState([]); //variavel
+    const { userId } = useContext(AuthContext)
 
     const navigation = useNavigation<AppNavigatorRoutesProps>();
 
-    function handleOpenExerciseDetails() {
-        navigation.navigate('exercise');
+    function handleOpenAlunoDetails(id: any) {
+        navigation.navigate('homeAluno', id);
+    }
+
+    function handleCadastrarAluno() {
+        navigation.navigate('ClientRegistration')
+    }
+
+    const filtering = (string: String) => {
+        setSearch(string)
+        let array_clone = [...users];
+
+        if (array_clone.length) {
+            let res = array_clone.filter(item => item.name.toLowerCase().includes(string.toLowerCase()))
+            setUsersFilter(res)
+        }
     }
 
     useEffect(() => {
-        async function fetchExercicies() {
-            try{
-                const result = await getExercicies()
-                setExercises(result)
-                console.log(result);
-            }catch(err){
-                console.log(err);
-            }
+        async function getAlunos() {
+            const response = await axios.get(`http://192.168.1.4:3333/users/admin/${userId}`);
+            setUsers(response.data);
+            setUsersFilter(response.data);
+            console.log(response.data);
         }
-
-        fetchExercicies()
-    }, [])
+        getAlunos();
+    }, []);
 
     return (
-        <VStack flex={1}>
-            <HomeHeader />
-            <Text color="gray.200" fontSize="sm">
-                Personal Home
-            </Text>
-            {/* <FlatList
-                data={groups}
-                keyExtractor={item => item}
-                renderItem={({ item }) => (
-                    <Group
-                        name={item}
-                        isActive={groupSelected === item}
-                        onPress={() => setGroupSelected(item)}
+        <VStack flex={1} p={5}>
+            <VStack flex={1}>
+                <Box>
+                    <Input
+                        placeholder="Pesquisar Aluno"
+                        bg="#ffffff"
+                        borderWidth={0}
+                        borderRadius="sm"
+                        color="white"
+                        onChangeText={filtering}
+                        value={search}
+                        _focus={{ bg: "gray.600" }}
+                        h={10}
+                        InputRightElement={
+                            <Icon
+                                as={FontAwesome}
+                                name="search"
+                                size={5}
+                                mr={3}
+                                color="#29292e"
+                            />
+                        }
                     />
-                )}
-                horizontal
-                showsHorizontalScrollIndicator={false}
-                _contentContainerStyle={{ px: 8 }}
-                my={10}
-                maxH={10}
-                minH={10}
-            /> */}
+                </Box>
 
-            <VStack flex={1} px={8}>
-                <HStack justifyContent="space-between" mb={5}>
-                    <Heading color="gray.200" fontSize="md" fontFamily="heading">
-                        Exercícios
+                <HStack justifyContent="space-between">
+                    <Heading color="gray.200" fontSize="md" fontFamily="heading" py={3}>
+                        Alunos
                     </Heading>
 
                     <Text color="gray.200" fontSize="sm">
-                        {/* {exercises.length} */}
+                        {users_filtered.length}
                     </Text>
                 </HStack>
 
                 <FlatList
-                    data={exercises}
-                    keyExtractor={(item, index) => item["_id"]}
+                    data={users_filtered}
+                    keyExtractor={(item) => item._id}
                     renderItem={({ item }) => (
-                        <ExerciseCard
+                        <HomeCard
+                            cardName={item.name}
                             data={item}
-                            onPress={handleOpenExerciseDetails}
+                            onPress={() => handleOpenAlunoDetails(item._id)}
+                            padding={2}
+                            key={item._id}
                         />
                     )}
                     showsVerticalScrollIndicator={false}
                     _contentContainerStyle={{ paddingBottom: 20 }}
                 />
-                <Button title="Marcar como realizado" mt={4} />
 
+                <ButtonApp
+                    title="Cadastrar Aluno"
+                    bg="#ffffff"
+                    _text={{ color: "#121214" }}
+                    onPress={() => handleCadastrarAluno()} /*Ir pra tela de cadastro de alunos*/
+                    w='full'
+                    h={12}
+                />
             </VStack>
         </VStack>
     );

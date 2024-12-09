@@ -8,7 +8,6 @@ type Props = TouchableOpacityProps & {
 
 export function ExerciseCard(data,{ ...rest }: Props) {
     const navigation = useNavigation();
-    // console.log(data);
     data = data.data;
     return (
         <TouchableOpacity onPress={() =>  navigation.navigate('exercise', {data:data})}>
@@ -26,11 +25,11 @@ export function ExerciseCard(data,{ ...rest }: Props) {
 
                 <VStack flex={1}>
                     <Heading fontSize="lg" color="white" fontFamily="heading">
-                       {data.name}
+                       Puxada Frontal
                     </Heading>
 
                     <Text fontSize="sm" color="gray.200" mt={1} numberOfLines={2} >
-                        {data.series} séries x {data.repetitions} repetições
+                        4 séries x 10 repetições
                     </Text>
                 </VStack>
 

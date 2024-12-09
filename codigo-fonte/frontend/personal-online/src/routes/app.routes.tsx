@@ -13,20 +13,97 @@ import ProfileSvg from "@assets/profile.svg";
 
 import { Home } from "@screens/Home";
 import { HomePersonal } from "@screens/HomePersonal";
+import { ClientRegistration } from "@screens/ClientRegistration";
+//import { HomeAluno } from "@screens/HomeAluno";
+import { Workout } from "@screens/Workout";
+import { WorkoutRegistration } from "@screens/WorkoutRegistration";
 import { Exercise } from "@screens/Exercise";
 import { History } from "@screens/History";
 import { Profile } from "@screens/Profile";
+import { Program } from "@screens/program";
+
+import { createStackNavigator } from "@react-navigation/stack";
+import Header from "../components/Header";
+
 
 type AppRoutes = {
     home: undefined;
+    // HomeAluno: undefined;
+    ClientRegistration: undefined;
+    program: undefined;
     exercise: undefined;
     history: undefined;
     profile: undefined;
+    workout: undefined;
+    homeAluno: undefined;
+    workoutRegistration: undefined;
 };
 
 export type AppNavigatorRoutesProps = BottomTabNavigationProp<AppRoutes>;
 
 const { Navigator, Screen } = createBottomTabNavigator<AppRoutes>();
+const Stack = createStackNavigator();
+
+function HomePersonalStack() {
+    return (
+        <Stack.Navigator screenOptions={{
+            headerShown: false
+        }}>
+            <Stack.Screen
+                name="home"
+                component={HomePersonal}
+            />
+
+            <Stack.Screen
+                name="homeAluno"
+                component={Home}
+            />
+
+            <Stack.Screen
+                name="program"
+                component={Program}
+            />
+
+            <Screen
+                name="ClientRegistration"
+                component={ClientRegistration}
+            />
+
+            <Screen
+                name="workoutRegistration"
+                component={WorkoutRegistration}
+            />
+        </Stack.Navigator>
+    )
+}
+
+function HomeStack() {
+    return (
+        <Stack.Navigator screenOptions={{
+            headerShown: false
+        }}>
+            <Stack.Screen
+                name="home"
+                component={Home}
+            />
+
+            <Stack.Screen
+                name="exercise"
+                component={Exercise}
+            />
+
+            <Stack.Screen
+                name="program"
+                component={Program}
+            />
+
+            <Stack.Screen
+                name="workout"
+                component={Workout}
+            />
+        </Stack.Navigator>
+    )
+}
 
 export function AppRoutes() {
     const { sizes, colors } = useTheme();
@@ -38,23 +115,23 @@ export function AppRoutes() {
     return (
         <Navigator
             screenOptions={{
-                headerShown: false,
+                header: () => <Header />,
                 tabBarShowLabel: false,
-                tabBarActiveTintColor: colors.blue[500],
+                tabBarActiveTintColor: colors.blue[300],
                 tabBarInactiveTintColor: colors.gray[200],
                 tabBarStyle: {
-                    backgroundColor: colors.blueGray[800],
+                    backgroundColor: "#032243",
                     borderTopWidth: 0,
                     height: Platform.OS === "android" ? "auto" : 96,
                     paddingBottom: sizes[10],
-                    paddingTop: sizes[7],
+                    paddingTop: sizes[10],
                 },
             }}
         >
             {userType == "admin" ? (
                 <Screen
                     name="home"
-                    component={HomePersonal}
+                    component={HomePersonalStack}
                     options={{
                         tabBarIcon: ({ color }) => (
                             <HomeSvg fill={color} width={iconSize} height={iconSize} />
@@ -62,10 +139,9 @@ export function AppRoutes() {
                     }}
                 />
             ) : (
-
                 <Screen
                     name="home"
-                    component={Home}
+                    component={HomeStack}
                     options={{
                         tabBarIcon: ({ color }) => (
                             <HomeSvg fill={color} width={iconSize} height={iconSize} />
@@ -73,16 +149,6 @@ export function AppRoutes() {
                     }}
                 />
             )}
-
-            {/* <Screen
-                name="home"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ color }) => (
-                        <HomeSvg fill={color} width={iconSize} height={iconSize} />
-                    ),
-                }}
-            /> */}
 
             <Screen
                 name="history"
@@ -102,12 +168,6 @@ export function AppRoutes() {
                         <ProfileSvg fill={color} width={iconSize} height={iconSize} />
                     ),
                 }}
-            />
-
-            <Screen
-                name="exercise"
-                component={Exercise}
-                options={{ tabBarButton: () => null }}
             />
         </Navigator>
     );

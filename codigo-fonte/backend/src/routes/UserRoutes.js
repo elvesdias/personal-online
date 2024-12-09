@@ -9,7 +9,9 @@ router.post("/register", UserController.register);
 router.post("/login", UserController.login);
 router.get("/checkuser", UserController.checkUser);
 router.get("/:id", UserController.getUserById);
+router.get("/admin/:id", UserController.getAllUsersByAdminId);
 router.patch("/edit/:id", verifyToken, UserController.editUser);
+router.patch("/updateHistory", verifyToken, UserController.addHist);
 
 router.post("/historico", UserController.createHist);
 router.get("/:id/historico", UserController.getAllHist);
